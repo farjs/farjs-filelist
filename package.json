@@ -1,0 +1,46 @@
+{
+  "name": "@farjs/filelist",
+  "author": "viktor-podzigun",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Common FileList api/plugin/interfaces",
+  "scripts": {
+    "lint": "quick-lint-js ./**/*.mjs ./**/*.ts",
+    "test": "tsc && bun test && node ./test/all.mjs",
+    "format": "prettier **/*.mjs **/*.ts --write",
+    "formatCheck": "prettier **/*.mjs **/*.ts --check"
+  },
+  "type": "module",
+  "exports": {
+    "./*": "./src/*"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/farjs/farjs-filelist.git"
+  },
+  "homepage": "https://github.com/farjs/farjs-filelist",
+  "bugs": {
+    "url": "http://github.com/farjs/farjs-filelist/issues"
+  },
+  "keywords": [
+    "api",
+    "plugin"
+  ],
+  "engines": {
+    "node": ">=14.16",
+    "bun": ">=0.8"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^16.6.2",
+    "c8": "^7.13.0",
+    "mock-fn": "^1.0.0",
+    "prettier": "^2.8.8",
+    "quick-lint-js": "^3.0.0",
+    "typescript": "^4.9.5"
+  }
+}
