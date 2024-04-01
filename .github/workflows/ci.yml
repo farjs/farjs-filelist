@@ -45,7 +45,7 @@ jobs:
           npm i
           npm run formatCheck
           npx tsc
-          npx quick-lint-js **/*.mjs **/*.ts
+          npx quick-lint-js ./**/*.mjs ./src/**/*.ts
           NODE_V8_COVERAGE=coverage0 npx c8 -r lcovonly --all --src ./src node --experimental-test-coverage ./test/all.mjs
         if: ${{ env.TAG_NAME == '' }}
 
