@@ -75,11 +75,6 @@ describe("FileListSort.test.mjs", () => {
     const items = [item0, item1, item2, item3, item4];
     const itemsR = [...items].reverse();
     
-    assert.deepEqual(item1.name , "Item.bin");
-    assert.deepEqual(item1.nameNormalized() , "item.bin");
-    assert.deepEqual(item2.ext() , "BIN");
-    assert.deepEqual(item2.extNormalized() , "bin");
-
     /**
      * @param {FileListItem[]} items
      * @param {SortMode} mode

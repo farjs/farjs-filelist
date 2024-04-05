@@ -8,38 +8,6 @@
  * @returns {FileListItem}
  */
 function FileListItem(name, isDir) {
-  /** @type {string | null} */
-  let _nameNormalized = null;
-
-  function nameNormalized() {
-    if (_nameNormalized === null) {
-      _nameNormalized = name.toLowerCase();
-    }
-    return _nameNormalized;
-  }
-
-  /** @type {string | null} */
-  let _ext = null;
-
-  function ext() {
-    if (_ext === null) {
-      const dotIndex = name.lastIndexOf(".");
-      if (dotIndex < 0) _ext = name;
-      else _ext = name.slice(dotIndex + 1);
-    }
-    return _ext;
-  }
-
-  /** @type {string | null} */
-  let _extNormalized = null;
-
-  function extNormalized() {
-    if (_extNormalized === null) {
-      _extNormalized = ext().toLowerCase();
-    }
-    return _extNormalized;
-  }
-
   return {
     name,
     isDir: !!isDir,
@@ -50,12 +18,6 @@ function FileListItem(name, isDir) {
     ctimeMs: 0,
     birthtimeMs: 0,
     permissions: "",
-    nameNormalized,
-    ext,
-    extNormalized,
-    toString: () => {
-      return name;
-    },
   };
 }
 

@@ -11,7 +11,9 @@ import SortMode from "./SortMode.mjs";
  * @returns {FileListSort}
  */
 function nextSort(sort, nextMode) {
-  /** @returns {boolean} */
+  /**
+   * @returns {boolean}
+   */
   function nextAsc() {
     if (sort.mode === nextMode) {
       return !sort.asc;
@@ -37,32 +39,46 @@ function nextSort(sort, nextMode) {
 }
 
 /**
- * @param {string} s1
- * @param {string} s2
+ * @typedef {{
+ *    idx: number,
+ *    name: string,
+ *    nameNormalized: string,
+ *    ext: string,
+ *    extNormalized: string,
+ *    size: number,
+ *    atimeMs: number,
+ *    mtimeMs: number,
+ *    ctimeMs: number,
+ * }} SortableItem
+ */
+
+/**
+ * @param {string} a
+ * @param {string} b
  * @returns {number}
  */
-function strCompare(s1, s2) {
-  return s1 === s2 ? 0 : s1 < s2 ? -1 : 1;
+function strCompare(a, b) {
+  return a === b ? 0 : a < b ? -1 : 1;
 }
 
 /**
- * @param {FileListItem} i1
- * @param {FileListItem} i2
+ * @param {SortableItem} a
+ * @param {SortableItem} b
  * @returns {number}
  */
-function sortByName(i1, i2) {
-  const res = strCompare(i1.nameNormalized(), i2.nameNormalized());
-  return res === 0 ? strCompare(i1.name, i2.name) : res;
+function sortByName(a, b) {
+  const res = strCompare(a.nameNormalized, b.nameNormalized);
+  return res === 0 ? strCompare(a.name, b.name) : res;
 }
 
 /**
- * @param {FileListItem} i1
- * @param {FileListItem} i2
+ * @param {SortableItem} a
+ * @param {SortableItem} b
  * @returns {number}
  */
-function sortByExt(i1, i2) {
-  const res = strCompare(i1.extNormalized(), i2.extNormalized());
-  return res === 0 ? strCompare(i1.ext(), i2.ext()) : res;
+function sortByExt(a, b) {
+  const res = strCompare(a.extNormalized, b.extNormalized);
+  return res === 0 ? strCompare(a.ext, b.ext) : res;
 }
 
 /**
@@ -71,34 +87,58 @@ function sortByExt(i1, i2) {
  * @returns {FileListItem[]}
  */
 function sortItems(items, mode) {
-  const newItems = [...items];
+  /**
+   * @param {(a: SortableItem, b: SortableItem) => number} compareFn
+   * @returns {FileListItem[]}
+   */
+  function doSort(compareFn) {
+    const sortableItems = items.map((item, idx) => {
+      const extIndex = item.name.lastIndexOf(".");
+      const ext = item.name.substring(extIndex + 1);
+
+      return {
+        idx,
+        name: item.name,
+        nameNormalized: item.name.toLowerCase(),
+        ext,
+        extNormalized: ext.toLowerCase(),
+        size: item.size,
+        atimeMs: item.atimeMs,
+        mtimeMs: item.mtimeMs,
+        ctimeMs: item.ctimeMs,
+      };
+    });
+
+    return sortableItems.sort(compareFn).map((item) => items[item.idx]);
+  }
+
   switch (mode) {
     case SortMode.Name:
-      return newItems.sort(sortByName);
+      return doSort(sortByName);
     case SortMode.Extension:
-      return newItems.sort((i1, i2) => {
+      return doSort((i1, i2) => {
         const res = sortByExt(i1, i2);
         return res === 0 ? sortByName(i1, i2) : res;
       });
     case SortMode.ModificationTime:
-      return newItems.sort((i1, i2) => {
+      return doSort((i1, i2) => {
         const res = i1.mtimeMs - i2.mtimeMs;
         return res === 0 ? sortByName(i1, i2) : res;
       });
     case SortMode.Size:
-      return newItems.sort((i1, i2) => {
+      return doSort((i1, i2) => {
         const res = i1.size - i2.size;
         return res === 0 ? sortByName(i1, i2) : res;
       });
     case SortMode.Unsorted:
       return items;
     case SortMode.CreationTime:
-      return newItems.sort((i1, i2) => {
+      return doSort((i1, i2) => {
         const res = i1.ctimeMs - i2.ctimeMs;
         return res === 0 ? sortByName(i1, i2) : res;
       });
     case SortMode.AccessTime:
-      return newItems.sort((i1, i2) => {
+      return doSort((i1, i2) => {
         const res = i1.atimeMs - i2.atimeMs;
         return res === 0 ? sortByName(i1, i2) : res;
       });

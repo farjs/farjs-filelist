@@ -3,7 +3,7 @@
   "author": "viktor-podzigun",
   "version": "0.0.0",
   "license": "MIT",
-  "description": "Common FileList api/plugin/interfaces",
+  "description": "Common plugin/api/ui for FAR.js File Browser module",
   "scripts": {
     "lint": "quick-lint-js ./**/*.mjs ./**/*.ts",
     "test": "tsc && bun test && node ./test/all.mjs",

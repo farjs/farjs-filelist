@@ -11,10 +11,4 @@ export interface FileListItem {
    * Format: `drwx---rwx`
    */
   readonly permissions: string;
-
-  nameNormalized(): string;
-  ext(): string;
-  extNormalized(): string;
-
-  toString(): string;
 }

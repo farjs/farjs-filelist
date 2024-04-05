@@ -4,4 +4,4 @@
 
 ## @farjs/filelist
 
-Common FileList api/plugin/interfaces library.
+Common plugin/api/ui library for FAR.js **File Browser** module.
