@@ -6,7 +6,7 @@
   "description": "Common plugin/api/ui for FAR.js File Browser module",
   "scripts": {
     "lint": "quick-lint-js ./**/*.mjs",
-    "test": "tsc && bun test && node ./test/all.mjs",
+    "test": "rm -r ./types && tsc && tsc -p ./test && bun test && node ./test/all.mjs",
     "format": "prettier **/*.mjs --write",
     "formatCheck": "prettier **/*.mjs --check"
   },

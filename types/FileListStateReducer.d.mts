@@ -2,7 +2,7 @@ export default FileListStateReducer;
 export type FileListDir = import("./api/FileListDir.mjs").FileListDir;
 export type FileListItem = import("./api/FileListItem.mjs").FileListItem;
 export type FileListSort = import("./sort/FileListSort.mjs").FileListSort;
-export type FileListAction = import("./FileListAction.mjs").FileListAction;
+export type FileListAction = import("./FileListActions.mjs").FileListAction;
 export type FileListState = import("./FileListState.mjs").FileListState;
 /**
  * @param {FileListState} state

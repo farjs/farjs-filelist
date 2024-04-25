@@ -1,5 +1,5 @@
 /**
- * @typedef {import("../src/FileListAction.mjs").FileListAction} FileListAction
+ * @typedef {import("../src/FileListActions.mjs").FileListAction} FileListAction
  */
 import assert from "node:assert/strict";
 import FileListDir from "../src/api/FileListDir.mjs";

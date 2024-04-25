@@ -2,7 +2,7 @@
  * @typedef {import("./api/FileListDir.mjs").FileListDir} FileListDir
  * @typedef {import("./api/FileListItem.mjs").FileListItem} FileListItem
  * @typedef {import("./sort/FileListSort.mjs").FileListSort} FileListSort
- * @typedef {import("./FileListAction.mjs").FileListAction} FileListAction
+ * @typedef {import("./FileListActions.mjs").FileListAction} FileListAction
  * @typedef {import("./FileListState.mjs").FileListState} FileListState
  */
 import FileListItem from "./api/FileListItem.mjs";
