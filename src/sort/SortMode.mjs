@@ -1,5 +1,12 @@
 /**
- * @typedef {"Name" | "Extension" | "ModificationTime" | "Size" | "Unsorted" | "CreationTime" | "AccessTime"} SortMode
+ * @typedef {"Name"
+ *  | "Extension"
+ *  | "ModificationTime"
+ *  | "Size"
+ *  | "Unsorted"
+ *  | "CreationTime"
+ *  | "AccessTime"
+ * } SortMode
  */
 
 /** @type {SortMode} */

@@ -1,10 +1,22 @@
 /**
- * @typedef {import("./api/FileListItem").FileListItem} FileListItem
- * @typedef {import("./FileListState").FileListState} FileListState
+ * @typedef {import("./api/FileListDir.mjs").FileListDir} FileListDir
+ * @typedef {import("./api/FileListItem.mjs").FileListItem} FileListItem
+ * @typedef {import("./sort/FileListSort.mjs").FileListSort} FileListSort
  */
-
 import { isSet } from "node:util/types";
 import SortMode from "./sort/SortMode.mjs";
+
+/**
+ * @typedef {{
+ *  readonly offset: number;
+ *  readonly index: number;
+ *  readonly currDir: FileListDir;
+ *  readonly selectedNames: Set<string>;
+ *  readonly isActive: boolean;
+ *  readonly diskSpace?: number;
+ *  readonly sort: FileListSort;
+ * }} FileListState
+ */
 
 /**
  * @returns {FileListState}

@@ -1,9 +1,15 @@
 /**
- * @typedef {import("../api/FileListItem").FileListItem} FileListItem
+ * @typedef {import("../api/FileListItem.mjs").FileListItem} FileListItem
  * @typedef {import("./SortMode.mjs").SortMode} SortMode
- * @typedef {import("./FileListSort").FileListSort} FileListSort
  */
 import SortMode from "./SortMode.mjs";
+
+/**
+ * @typedef {{
+ *  readonly mode: SortMode;
+ *  readonly asc: boolean;
+ * }} FileListSort
+ */
 
 /**
  * @param {FileListSort} sort

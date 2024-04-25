@@ -1,5 +1,5 @@
 /**
- * @typedef {import("../../src/api/FileListItem").FileListItem} FileListItem
+ * @typedef {import("../../src/api/FileListItem.mjs").FileListItem} FileListItem
  */
 import assert from "node:assert/strict";
 import FileListItem from "../../src/api/FileListItem.mjs";

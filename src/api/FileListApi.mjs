@@ -1,9 +1,25 @@
 /**
- * @typedef {import("./FileListDir").FileListDir} FileListDir
- * @typedef {import("./FileListItem").FileListItem} FileListItem
+ * @typedef {import("./FileListDir.mjs").FileListDir} FileListDir
+ * @typedef {import("./FileListItem.mjs").FileListItem} FileListItem
  * @typedef {import("./FileListCapability.mjs").FileListCapability} FileListCapability
- * @typedef {import("./FileListApi").FileSource} FileSource
- * @typedef {import("./FileListApi").FileTarget} FileTarget
+ */
+
+/**
+ * @typedef {{
+ *  readonly file: string;
+ *  readNextBytes(buff: Uint8Array): Promise<number>;
+ *  close(): Promise<void>;
+ * }} FileSource
+ */
+
+/**
+ * @typedef {{
+ *  readonly file: string;
+ *  writeNextBytes(buff: Uint8Array, length: number): Promise<number>;
+ *  setAttributes(src: FileListItem): Promise<void>;
+ *  close(): Promise<void>;
+ *  delete(): Promise<void>;
+ * }} FileTarget
  */
 
 class FileListApi {

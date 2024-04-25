@@ -1,8 +1,6 @@
-/**
- * @typedef {import("../src/api/FileListDir").FileListDir} FileListDir
- */
 import assert from "node:assert/strict";
 import SortMode from "../src/sort/SortMode.mjs";
+import FileListDir from "../src/api/FileListDir.mjs";
 import FileListItem from "../src/api/FileListItem.mjs";
 import FileListState from "../src/FileListState.mjs";
 
@@ -37,8 +35,7 @@ describe("FileListState.test.mjs", () => {
     //given
     const item1 = FileListItem("dir 1");
     const item2 = FileListItem("file 1");
-    /** @type {FileListDir} */
-    const currDir = { path: "/folder", isRoot: false, items: [item1, item2] };
+    const currDir = FileListDir("/folder", false, [item1, item2]);
     const s = FileListState();
 
     //when & then
@@ -58,8 +55,7 @@ describe("FileListState.test.mjs", () => {
     //given
     const item1 = FileListItem("dir 1");
     const item2 = FileListItem("file 1");
-    /** @type {FileListDir} */
-    const currDir = { path: "/folder", isRoot: false, items: [item1, item2] };
+    const currDir = FileListDir("/folder", false, [item1, item2]);
     const s = FileListState();
 
     //when & then
@@ -91,8 +87,7 @@ describe("FileListState.test.mjs", () => {
     //given
     const item1 = FileListItem("dir 1");
     const item2 = FileListItem("file 1");
-    /** @type {FileListDir} */
-    const currDir = { path: "/folder", isRoot: false, items: [item1, item2] };
+    const currDir = FileListDir("/folder", false, [item1, item2]);
     const s = FileListState();
 
     //when & then

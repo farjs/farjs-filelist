@@ -1,7 +1,7 @@
 /**
- * @typedef {import("../../src/api/FileListItem").FileListItem} FileListItem
+ * @typedef {import("../../src/api/FileListItem.mjs").FileListItem} FileListItem
  * @typedef {import("../../src/sort/SortMode.mjs").SortMode} SortMode
- * @typedef {import("../../src/sort/FileListSort").FileListSort} FileListSort
+ * @typedef {import("../../src/sort/FileListSort.mjs").FileListSort} FileListSort
  */
 import assert from "node:assert/strict";
 import FileListItem from "../../src/api/FileListItem.mjs";

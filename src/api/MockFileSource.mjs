@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./FileListApi").FileSource} FileSource
+ * @typedef {import("./FileListApi.mjs").FileSource} FileSource
  */
 
 /**

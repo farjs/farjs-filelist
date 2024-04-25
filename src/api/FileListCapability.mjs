@@ -1,25 +1,38 @@
 /**
- * @typedef {"read" | "write" | "delete" | "mkDirs" | "copyInplace" | "moveInplace"} FileListCapability
+ * @typedef {"read"
+ *  | "write"
+ *  | "delete"
+ *  | "mkDirs"
+ *  | "copyInplace"
+ *  | "moveInplace"
+ * } FileListCapability
  */
 
+/** @type {FileListCapability} */
+const read = "read";
+
+/** @type {FileListCapability} */
+const write = "write";
+
+/** @type {FileListCapability} */
+const deleteCapab = "delete";
+
+/** @type {FileListCapability} */
+const mkDirs = "mkDirs";
+
+/** @type {FileListCapability} */
+const copyInplace = "copyInplace";
+
+/** @type {FileListCapability} */
+const moveInplace = "moveInplace";
+
 const FileListCapability = Object.freeze({
-  /** @type {FileListCapability} */
-  read: "read",
-
-  /** @type {FileListCapability} */
-  write: "write",
-
-  /** @type {FileListCapability} */
-  delete: "delete",
-
-  /** @type {FileListCapability} */
-  mkDirs: "mkDirs",
-
-  /** @type {FileListCapability} */
-  copyInplace: "copyInplace",
-
-  /** @type {FileListCapability} */
-  moveInplace: "moveInplace",
+  read,
+  write,
+  delete: deleteCapab,
+  mkDirs,
+  copyInplace,
+  moveInplace,
 });
 
 export default FileListCapability;

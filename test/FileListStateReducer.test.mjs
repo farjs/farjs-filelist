@@ -1,8 +1,8 @@
 /**
- * @typedef {import("../src/api/FileListDir").FileListDir} FileListDir
- * @typedef {import("../src/FileListActions").FileListAction} FileListAction
+ * @typedef {import("../src/FileListAction.mjs").FileListAction} FileListAction
  */
 import assert from "node:assert/strict";
+import FileListDir from "../src/api/FileListDir.mjs";
 import FileListItem from "../src/api/FileListItem.mjs";
 import SortMode from "../src/sort/SortMode.mjs";
 import FileListState from "../src/FileListState.mjs";
@@ -59,17 +59,12 @@ describe("FileListStateReducer.test.mjs", () => {
   it("should set sorted items when FileListDirChangedAction(root)", () => {
     //given
     const state = { ...FileListState(), selectedNames: new Set(["file 1"]) };
-    /** @type {FileListDir} */
-    const currDir = {
-      path: "/",
-      isRoot: true,
-      items: [
-        FileListItem("file 2"),
-        FileListItem("file 1"),
-        FileListItem("dir 2", true),
-        FileListItem("dir 1", true),
-      ],
-    };
+    const currDir = FileListDir("/", true, [
+      FileListItem("file 2"),
+      FileListItem("file 1"),
+      FileListItem("dir 2", true),
+      FileListItem("dir 1", true),
+    ]);
     /** @type {FileListAction} */
     const action = {
       action: "FileListDirChangedAction",
@@ -98,24 +93,18 @@ describe("FileListStateReducer.test.mjs", () => {
 
   it("should add .. to items and set index when FileListDirChangedAction(non-root)", () => {
     //given
-    /** @type {FileListDir} */
-    const stateDir = { path: "/root/sub-dir/dir 2", isRoot: false, items: [] };
+    const stateDir = FileListDir("/root/sub-dir/dir 2", false, []);
     const state = {
       ...FileListState(),
       currDir: stateDir,
       selectedNames: new Set(["file 1"]),
     };
-    /** @type {FileListDir} */
-    const currDir = {
-      path: "/root/sub-dir",
-      isRoot: false,
-      items: [
-        FileListItem("file 2"),
-        FileListItem("file 1"),
-        FileListItem("dir 2", true),
-        FileListItem("dir 1", true),
-      ],
-    };
+    const currDir = FileListDir("/root/sub-dir", false, [
+      FileListItem("file 2"),
+      FileListItem("file 1"),
+      FileListItem("dir 2", true),
+      FileListItem("dir 1", true),
+    ]);
     /** @type {FileListAction} */
     const action = {
       action: "FileListDirChangedAction",
@@ -156,12 +145,10 @@ describe("FileListStateReducer.test.mjs", () => {
       },
       selectedNames: new Set(["test", "dir 1"]),
     };
-    /** @type {FileListDir} */
-    const currDir = {
-      path: "/root/sub-dir",
-      isRoot: false,
-      items: [FileListItem("file 1"), FileListItem("dir 1", true)],
-    };
+    const currDir = FileListDir("/root/sub-dir", false, [
+      FileListItem("file 1"),
+      FileListItem("dir 1", true),
+    ]);
     /** @type {FileListAction} */
     const action = { action: "FileListDirUpdatedAction", currDir };
 
@@ -190,19 +177,15 @@ describe("FileListStateReducer.test.mjs", () => {
     const state = {
       ...FileListState(),
       offset: 1,
-      currDir: {
-        path: "/root/sub-dir/dir 2",
-        isRoot: false,
-        items: [FileListItem.up, FileListItem("file 1")],
-      },
+      currDir: FileListDir("/root/sub-dir/dir 2", false, [
+        FileListItem.up,
+        FileListItem("file 1"),
+      ]),
       selectedNames: new Set(["test", "file 1"]),
     };
-    /** @type {FileListDir} */
-    const currDir = {
-      path: "/root/sub-dir",
-      isRoot: false,
-      items: [FileListItem("dir 1", true)],
-    };
+    const currDir = FileListDir("/root/sub-dir", false, [
+      FileListItem("dir 1", true),
+    ]);
     /** @type {FileListAction} */
     const action = { action: "FileListDirUpdatedAction", currDir };
 
@@ -228,19 +211,14 @@ describe("FileListStateReducer.test.mjs", () => {
       ...FileListState(),
       offset: 1,
       index: 1,
-      currDir: {
-        path: "/root/sub-dir/dir 2",
-        isRoot: false,
-        items: [
-          FileListItem.up,
-          FileListItem("file 1"),
-          FileListItem("dir 1", true),
-        ],
-      },
+      currDir: FileListDir("/root/sub-dir/dir 2", false, [
+        FileListItem.up,
+        FileListItem("file 1"),
+        FileListItem("dir 1", true),
+      ]),
       selectedNames: new Set(["file 1"]),
     };
-    /** @type {FileListDir} */
-    const currDir = { path: "/root/sub-dir", isRoot: false, items: [] };
+    const currDir = FileListDir("/root/sub-dir", false, []);
     /** @type {FileListAction} */
     const action = { action: "FileListDirUpdatedAction", currDir };
 
@@ -266,19 +244,14 @@ describe("FileListStateReducer.test.mjs", () => {
       ...FileListState(),
       offset: 1,
       index: 1,
-      currDir: { path: "/root/sub-dir/dir 2", isRoot: true, items: [] },
+      currDir: FileListDir("/root/sub-dir/dir 2", true, []),
     };
-    /** @type {FileListDir} */
-    const currDir = {
-      path: "/root/sub-dir",
-      isRoot: false,
-      items: [
-        FileListItem("file 1"),
-        FileListItem("Fixes"),
-        FileListItem("Food", true),
-        FileListItem("dir 1", true),
-      ],
-    };
+    const currDir = FileListDir("/root/sub-dir", false, [
+      FileListItem("file 1"),
+      FileListItem("Fixes"),
+      FileListItem("Food", true),
+      FileListItem("dir 1", true),
+    ]);
     /** @type {FileListAction} */
     const action = { action: "FileListDirUpdatedAction", currDir };
 
@@ -306,7 +279,7 @@ describe("FileListStateReducer.test.mjs", () => {
 
   it("should update state when FileListItemCreatedAction", () => {
     //given
-    const stateDir = { path: "/", isRoot: true, items: [] };
+    const stateDir = FileListDir("/", true, []);
     const state = {
       ...FileListState(),
       offset: 1,
@@ -314,7 +287,6 @@ describe("FileListStateReducer.test.mjs", () => {
       selectedNames: new Set(["test1"]),
     };
     const dir = "dir 2";
-    /** @type {FileListDir} */
     const currDir = {
       ...stateDir,
       items: [

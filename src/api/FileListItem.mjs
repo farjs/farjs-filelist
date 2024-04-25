@@ -1,5 +1,15 @@
 /**
- * @typedef {import("./FileListItem").FileListItem} FileListItem
+ * @typedef {{
+ *  readonly name: string;
+ *  readonly isDir: boolean;
+ *  readonly isSymLink: boolean;
+ *  readonly size: number;
+ *  readonly atimeMs: number;
+ *  readonly mtimeMs: number;
+ *  readonly ctimeMs: number;
+ *  readonly birthtimeMs: number;
+ *  readonly permissions: string; //Format: `drwx---rwx`
+ * }} FileListItem
  */
 
 /**

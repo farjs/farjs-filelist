@@ -1,9 +1,9 @@
 /**
- * @typedef {import("./api/FileListDir").FileListDir} FileListDir
- * @typedef {import("./api/FileListItem").FileListItem} FileListItem
- * @typedef {import("./sort/FileListSort").FileListSort} FileListSort
- * @typedef {import("./FileListActions").FileListAction} FileListAction
- * @typedef {import("./FileListState").FileListState} FileListState
+ * @typedef {import("./api/FileListDir.mjs").FileListDir} FileListDir
+ * @typedef {import("./api/FileListItem.mjs").FileListItem} FileListItem
+ * @typedef {import("./sort/FileListSort.mjs").FileListSort} FileListSort
+ * @typedef {import("./FileListAction.mjs").FileListAction} FileListAction
+ * @typedef {import("./FileListState.mjs").FileListState} FileListState
  */
 import FileListItem from "./api/FileListItem.mjs";
 import FileListSort from "./sort/FileListSort.mjs";
