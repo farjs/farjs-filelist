@@ -29,12 +29,42 @@ class MockFileListApi extends FileListApi {
   } = {}) {
     super(isLocal ?? true, capabilities);
 
-    if (readDir) this.readDir = readDir;
-    if (deleteMock) this.delete = deleteMock;
-    if (mkDirs) this.mkDirs = mkDirs;
-    if (readFile) this.readFile = readFile;
-    if (writeFile) this.writeFile = writeFile;
-    if (getDriveRoot) this.getDriveRoot = getDriveRoot;
+    this.readDir = readDir ?? this.readDir;
+    this.delete = deleteMock ?? this.delete;
+    this.mkDirs = mkDirs ?? this.mkDirs;
+    this.readFile = readFile ?? this.readFile;
+    this.writeFile = writeFile ?? this.writeFile;
+    this.getDriveRoot = getDriveRoot ?? this.getDriveRoot;
+  }
+
+  /** @type {FileListApi['readDir']} */
+  readDir() {
+    return Promise.reject(new Error("Not implemented!"));
+  }
+
+  /** @type {FileListApi['delete']} */
+  delete() {
+    return Promise.reject(new Error("Not implemented!"));
+  }
+
+  /** @type {FileListApi['mkDirs']} */
+  mkDirs() {
+    return Promise.reject(new Error("Not implemented!"));
+  }
+
+  /** @type {FileListApi['readFile']} */
+  readFile() {
+    return Promise.reject(new Error("Not implemented!"));
+  }
+
+  /** @type {FileListApi['writeFile']} */
+  writeFile() {
+    return Promise.reject(new Error("Not implemented!"));
+  }
+
+  /** @type {FileListApi['getDriveRoot']} */
+  getDriveRoot() {
+    return Promise.reject(new Error("Not implemented!"));
   }
 }
 

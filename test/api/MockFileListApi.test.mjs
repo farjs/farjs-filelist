@@ -44,7 +44,7 @@ describe("MockFileListApi.test.mjs", () => {
     await checkRejected(result.mkDirs(["test"]));
     await checkRejected(result.readFile("test", FileListItem("file"), 0));
     await checkRejected(result.writeFile("test", "file", mockFunction()));
-    assert.deepEqual(await result.getDriveRoot("test"), undefined);
+    await checkRejected(result.getDriveRoot("test"));
   });
 
   it("should construct instance with mocks", () => {
