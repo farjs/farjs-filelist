@@ -455,6 +455,194 @@ describe("FileListActions.test.mjs", () => {
     assert.deepEqual(onProgress.times, 1);
   });
 
+  it("should log error if source.close() fails when copyFile", async () => {
+    //given
+    const file = FileListItem("test_file");
+    const position = 1234.0;
+    const readNextBytes = mockFunction((buff) => {
+      //then
+      if (readNextBytes.times === 1) {
+        assert.deepEqual(buff.length, 64 * 1024);
+        return Promise.resolve(123);
+      }
+      return Promise.resolve(0);
+    });
+    const error = new Error("test source close error");
+    const closeSource = mockFunction(() => Promise.reject(error));
+    const source = new MockFileSource({ readNextBytes, close: closeSource });
+
+    const writeNextBytes = mockFunction((buff, length) => {
+      //then
+      assert.deepEqual(buff.length, 64 * 1024);
+      assert.deepEqual(length, 123);
+      return Promise.resolve(position);
+    });
+    const setAttributes = mockFunction((resFile) => {
+      //then
+      assert.deepEqual(resFile, file);
+      return Promise.resolve();
+    });
+    const closeTarget = mockFunction(() => Promise.resolve());
+    const target = new MockFileTarget({
+      writeNextBytes,
+      setAttributes,
+      close: closeTarget,
+    });
+
+    const srcDir = "parent-dir";
+    const dstDir = "target-dir";
+    const dstName = "newName";
+
+    const writeFile = mockFunction((resDir, resName, _) => {
+      //then
+      assert.deepEqual(resDir, dstDir);
+      assert.deepEqual(resName, dstName);
+      return Promise.resolve(target);
+    });
+    const readFile = mockFunction((resDir, resFile, pos) => {
+      //then
+      assert.deepEqual(resDir, srcDir);
+      assert.deepEqual(resFile, file);
+      assert.deepEqual(pos, 0.0);
+      return Promise.resolve(source);
+    });
+    const actions = new FileListActions(
+      new MockFileListApi({ readFile, writeFile })
+    );
+    const onExists = mockFunction();
+    const onProgress = mockFunction((resPos) => {
+      //then
+      assert.deepEqual(resPos, position);
+      return Promise.resolve(true);
+    });
+    let capturedError = "";
+    const logMock = mockFunction((msg) => {
+      capturedError = msg;
+    });
+    const savedLog = console.log;
+    console.log = logMock;
+
+    //when
+    const result = await actions.copyFile(
+      srcDir,
+      file,
+      writeFile(dstDir, dstName, onExists),
+      onProgress
+    );
+
+    //then
+    console.log = savedLog;
+    assert.deepEqual(
+      capturedError,
+      `Failed to close srcFile: ${source.file}, error: ${error}`
+    );
+    assert.deepEqual(result, true);
+    assert.deepEqual(readNextBytes.times, 2);
+    assert.deepEqual(closeSource.times, 1);
+    assert.deepEqual(writeNextBytes.times, 1);
+    assert.deepEqual(setAttributes.times, 1);
+    assert.deepEqual(closeTarget.times, 1);
+    assert.deepEqual(readFile.times, 1);
+    assert.deepEqual(writeFile.times, 1);
+    assert.deepEqual(onExists.times, 0);
+    assert.deepEqual(onProgress.times, 1);
+    assert.deepEqual(logMock.times, 1);
+  });
+
+  it("should log error if target.close() fails when copyFile", async () => {
+    //given
+    const file = FileListItem("test_file");
+    const position = 1234.0;
+    const readNextBytes = mockFunction((buff) => {
+      //then
+      if (readNextBytes.times === 1) {
+        assert.deepEqual(buff.length, 64 * 1024);
+        return Promise.resolve(123);
+      }
+      return Promise.resolve(0);
+    });
+    const closeSource = mockFunction(() => Promise.resolve());
+    const source = new MockFileSource({ readNextBytes, close: closeSource });
+
+    const writeNextBytes = mockFunction((buff, length) => {
+      //then
+      assert.deepEqual(buff.length, 64 * 1024);
+      assert.deepEqual(length, 123);
+      return Promise.resolve(position);
+    });
+    const setAttributes = mockFunction((resFile) => {
+      //then
+      assert.deepEqual(resFile, file);
+      return Promise.resolve();
+    });
+    const error = new Error("test target close error");
+    const closeTarget = mockFunction(() => Promise.reject(error));
+    const target = new MockFileTarget({
+      writeNextBytes,
+      setAttributes,
+      close: closeTarget,
+    });
+
+    const srcDir = "parent-dir";
+    const dstDir = "target-dir";
+    const dstName = "newName";
+
+    const writeFile = mockFunction((resDir, resName, _) => {
+      //then
+      assert.deepEqual(resDir, dstDir);
+      assert.deepEqual(resName, dstName);
+      return Promise.resolve(target);
+    });
+    const readFile = mockFunction((resDir, resFile, pos) => {
+      //then
+      assert.deepEqual(resDir, srcDir);
+      assert.deepEqual(resFile, file);
+      assert.deepEqual(pos, 0.0);
+      return Promise.resolve(source);
+    });
+    const actions = new FileListActions(
+      new MockFileListApi({ readFile, writeFile })
+    );
+    const onExists = mockFunction();
+    const onProgress = mockFunction((resPos) => {
+      //then
+      assert.deepEqual(resPos, position);
+      return Promise.resolve(true);
+    });
+    let capturedError = "";
+    const logMock = mockFunction((msg) => {
+      capturedError = msg;
+    });
+    const savedLog = console.log;
+    console.log = logMock;
+
+    //when
+    const result = await actions.copyFile(
+      srcDir,
+      file,
+      writeFile(dstDir, dstName, onExists),
+      onProgress
+    );
+
+    //then
+    console.log = savedLog;
+    assert.deepEqual(
+      capturedError,
+      `Failed to close dstFile: ${target.file}, error: ${error}`
+    );
+    assert.deepEqual(result, true);
+    assert.deepEqual(readNextBytes.times, 2);
+    assert.deepEqual(closeSource.times, 1);
+    assert.deepEqual(writeNextBytes.times, 1);
+    assert.deepEqual(setAttributes.times, 1);
+    assert.deepEqual(closeTarget.times, 1);
+    assert.deepEqual(readFile.times, 1);
+    assert.deepEqual(writeFile.times, 1);
+    assert.deepEqual(onExists.times, 0);
+    assert.deepEqual(onProgress.times, 1);
+    assert.deepEqual(logMock.times, 1);
+  });
+
   it("should call onProgress(file.size) if skip existing when copyFile", async () => {
     //given
     const file = { ...FileListItem("test_file"), size: 123 };
