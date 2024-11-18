@@ -8,4 +8,6 @@ await import("./api/MockFileListApi.test.mjs");
 await import("./api/MockFileSource.test.mjs");
 await import("./api/MockFileTarget.test.mjs");
 
+await import("./history/HistoryProvider.test.mjs");
+
 await import("./sort/FileListSort.test.mjs");
