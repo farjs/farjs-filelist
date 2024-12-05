@@ -12,4 +12,6 @@ await import("./history/HistoryProvider.test.mjs");
 
 await import("./sort/FileListSort.test.mjs");
 
+await import("./stack/PanelStackItem.test.mjs");
+
 await import("./theme/FileListTheme.test.mjs");
