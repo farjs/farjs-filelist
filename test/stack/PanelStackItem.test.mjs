@@ -27,7 +27,7 @@ describe("PanelStackItem.test.mjs", () => {
     const result = new PanelStackItem(Component);
 
     //then
-    assert.deepEqual(result.component == Component, true);
+    assert.deepEqual(result.component === Component, true);
     assert.deepEqual(result.dispatch, undefined);
     assert.deepEqual(result.actions, undefined);
     assert.deepEqual(result.state, undefined);
@@ -38,10 +38,10 @@ describe("PanelStackItem.test.mjs", () => {
     const result = new PanelStackItem(Component, dispatch, actions, state);
 
     //then
-    assert.deepEqual(result.component == Component, true);
-    assert.deepEqual(result.dispatch == dispatch, true);
-    assert.deepEqual(result.actions == actions, true);
-    assert.deepEqual(result.state == state, true);
+    assert.deepEqual(result.component === Component, true);
+    assert.deepEqual(result.dispatch === dispatch, true);
+    assert.deepEqual(result.actions === actions, true);
+    assert.deepEqual(result.state === state, true);
   });
 
   it("should return new item with updated state when withState", () => {
@@ -55,9 +55,9 @@ describe("PanelStackItem.test.mjs", () => {
     //then
     assert.deepEqual(item.state, undefined);
     assert.deepEqual(result !== item, true);
-    assert.deepEqual(result.dispatch == dispatch, true);
-    assert.deepEqual(result.actions == actions, true);
-    assert.deepEqual(result.state == state, true);
+    assert.deepEqual(result.dispatch === dispatch, true);
+    assert.deepEqual(result.actions === actions, true);
+    assert.deepEqual(result.state === state, true);
   });
 
   it("should return new item with undefined state when updateState", () => {
@@ -73,8 +73,8 @@ describe("PanelStackItem.test.mjs", () => {
     assert.deepEqual(onState.times, 0);
     assert.deepEqual(item.state, undefined);
     assert.deepEqual(result !== item, true);
-    assert.deepEqual(result.dispatch == dispatch, true);
-    assert.deepEqual(result.actions == actions, true);
+    assert.deepEqual(result.dispatch === dispatch, true);
+    assert.deepEqual(result.actions === actions, true);
     assert.deepEqual(result.state, undefined);
   });
 
@@ -93,12 +93,12 @@ describe("PanelStackItem.test.mjs", () => {
 
     //then
     assert.deepEqual(onState.times, 1);
-    assert.deepEqual(capturedState == state, true);
-    assert.deepEqual(item.state == state, true);
+    assert.deepEqual(capturedState === state, true);
+    assert.deepEqual(item.state === state, true);
     assert.deepEqual(result !== item, true);
-    assert.deepEqual(result.dispatch == dispatch, true);
-    assert.deepEqual(result.actions == actions, true);
-    assert.deepEqual(result.state == newState, true);
+    assert.deepEqual(result.dispatch === dispatch, true);
+    assert.deepEqual(result.actions === actions, true);
+    assert.deepEqual(result.state === newState, true);
   });
 
   it("should return undefined when getData", () => {

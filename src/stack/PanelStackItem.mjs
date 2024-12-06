@@ -8,17 +8,21 @@ import FileListState from "../FileListState.mjs";
 import FileListActions from "../FileListActions.mjs";
 
 /**
+ * @typedef {React.FunctionComponent<any> | React.ComponentClass<any>} ReactComponent
+ */
+
+/**
  * @template T
  */
 class PanelStackItem {
   /**
-   * @param {React.FunctionComponent<any> | React.ComponentClass<any>} component
+   * @param {ReactComponent} component
    * @param {Dispatch} [dispatch]
    * @param {FileListActions} [actions]
    * @param {T} [state]
    */
   constructor(component, dispatch, actions, state) {
-    /** @readonly @type {React.FunctionComponent<any> | React.ComponentClass<any>} */
+    /** @readonly @type {ReactComponent} */
     this.component = component;
 
     /** @readonly @type {Dispatch | undefined} */

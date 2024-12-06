@@ -1,19 +1,23 @@
 export default PanelStackItem;
 export type Dispatch = import("../FileListData.mjs").Dispatch;
 export type FileListData = import("../FileListData.mjs").FileListData;
+export type ReactComponent = React.FunctionComponent<any> | React.ComponentClass<any>;
+/**
+ * @typedef {React.FunctionComponent<any> | React.ComponentClass<any>} ReactComponent
+ */
 /**
  * @template T
  */
 declare class PanelStackItem<T> {
     /**
-     * @param {React.FunctionComponent<any> | React.ComponentClass<any>} component
+     * @param {ReactComponent} component
      * @param {Dispatch} [dispatch]
      * @param {FileListActions} [actions]
      * @param {T} [state]
      */
-    constructor(component: React.FunctionComponent<any> | React.ComponentClass<any>, dispatch?: import("../FileListData.mjs").Dispatch | undefined, actions?: FileListActions | undefined, state?: T | undefined);
-    /** @readonly @type {React.FunctionComponent<any> | React.ComponentClass<any>} */
-    readonly component: React.FunctionComponent<any> | React.ComponentClass<any>;
+    constructor(component: ReactComponent, dispatch?: import("../FileListData.mjs").Dispatch | undefined, actions?: FileListActions | undefined, state?: T | undefined);
+    /** @readonly @type {ReactComponent} */
+    readonly component: ReactComponent;
     /** @readonly @type {Dispatch | undefined} */
     readonly dispatch: Dispatch | undefined;
     /** @readonly @type {FileListActions | undefined} */
