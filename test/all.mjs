@@ -15,5 +15,6 @@ await import("./sort/FileListSort.test.mjs");
 await import("./stack/PanelStack.test.mjs");
 await import("./stack/PanelStackItem.test.mjs");
 await import("./stack/WithStack.test.mjs");
+await import("./stack/WithStacks.test.mjs");
 
 await import("./theme/FileListTheme.test.mjs");

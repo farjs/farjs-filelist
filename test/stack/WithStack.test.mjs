@@ -2,7 +2,7 @@
  * @typedef {import("@farjs/blessed").Widgets.BlessedElement} BlessedElement
  * @typedef {import("../../src/stack/WithStack.mjs").WithStackProps} WithStackProps
  */
-import React, { useContext } from "react";
+import React from "react";
 import assert from "node:assert/strict";
 import mockFunction from "mock-fn";
 import TestRenderer from "react-test-renderer";
@@ -104,7 +104,7 @@ function getStackCtxHook() {
   /** @type {React.MutableRefObject<WithStackProps | null>} */
   const ref = React.createRef();
   const comp = () => {
-    const ctx = useContext(WithStack.Context);
+    const ctx = WithStack.useStack();
     ref.current = ctx;
     return h(React.Fragment, null);
   };
