@@ -1,4 +1,5 @@
 export default SortIndicator;
+export type ThemeStyle = import("@farjs/ui/theme/Theme.mjs").ThemeStyle;
 export type FileListSort = import("./FileListSort.mjs").FileListSort;
 export type SortIndicatorProps = {
     readonly sort: FileListSort;
@@ -19,7 +20,7 @@ declare function SortIndicator(props: SortIndicatorProps): React.DOMElement<{
     autoFocus: boolean;
     clickable: boolean;
     mouse: boolean;
-    style: import("../../../node_modules/@farjs/ui/types/theme/Theme.mjs").ThemeStyle;
+    style: import("@farjs/ui/theme/Theme.mjs").ThemeStyle;
     onClick: () => void;
     content: string;
 }, Element>;

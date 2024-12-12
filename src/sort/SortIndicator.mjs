@@ -1,4 +1,5 @@
 /**
+ * @typedef {import("@farjs/ui/theme/Theme.mjs").ThemeStyle} ThemeStyle
  * @typedef {import("./FileListSort.mjs").FileListSort} FileListSort
  */
 import React from "react";
@@ -18,8 +19,9 @@ const h = React.createElement;
  * @param {SortIndicatorProps} props
  */
 const SortIndicator = (props) => {
+  /** @type {ThemeStyle} */
+  const style = FileListTheme.useTheme().fileList.header;
   const stackProps = WithStack.useStack();
-  const theme = FileListTheme.useTheme().fileList;
   const text = `${SortIndicator._getIndicator(props.sort)} `;
 
   return h("text", {
@@ -30,7 +32,7 @@ const SortIndicator = (props) => {
     autoFocus: false,
     clickable: true,
     mouse: true,
-    style: theme.header,
+    style,
     onClick: () => {
       process.stdin.emit("keypress", undefined, {
         name: stackProps.isRight ? "r" : "l",
