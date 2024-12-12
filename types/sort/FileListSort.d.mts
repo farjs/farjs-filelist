@@ -16,6 +16,12 @@ export type SortableItem = {
 };
 export type FileListItem = import("../api/FileListItem.mjs").FileListItem;
 export type SortMode = import("./SortMode.mjs").SortMode;
+/**
+ * @param {SortMode} mode
+ * @param {boolean} asc
+ * @returns {FileListSort}
+ */
+declare function FileListSort(mode: SortMode, asc: boolean): FileListSort;
 declare namespace FileListSort {
     export { nextSort };
     export { sortItems };

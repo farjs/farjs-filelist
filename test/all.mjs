@@ -11,6 +11,7 @@ await import("./api/MockFileTarget.test.mjs");
 await import("./history/HistoryProvider.test.mjs");
 
 await import("./sort/FileListSort.test.mjs");
+await import("./sort/SortIndicator.test.mjs");
 
 await import("./stack/PanelStack.test.mjs");
 await import("./stack/PanelStackItem.test.mjs");

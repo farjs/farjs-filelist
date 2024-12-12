@@ -151,9 +151,16 @@ function sortItems(items, mode) {
   }
 }
 
-const FileListSort = {
-  nextSort,
-  sortItems,
-};
+/**
+ * @param {SortMode} mode
+ * @param {boolean} asc
+ * @returns {FileListSort}
+ */
+function FileListSort(mode, asc) {
+  return { mode, asc };
+}
+
+FileListSort.nextSort = nextSort;
+FileListSort.sortItems = sortItems;
 
 export default FileListSort;
