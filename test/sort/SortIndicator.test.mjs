@@ -9,7 +9,7 @@ import mockFunction from "mock-fn";
 import TestRenderer from "react-test-renderer";
 import { assertComponents } from "react-assert";
 import FileListTheme from "../../src/theme/FileListTheme.mjs";
-import withThemeContext from "../theme/withThemeContext.mjs";
+import withThemeContext from "../../src/theme/withThemeContext.mjs";
 import withStackContext from "../../src/stack/withStackContext.mjs";
 import PanelStack from "../../src/stack/PanelStack.mjs";
 import SortMode from "../../src/sort/SortMode.mjs";

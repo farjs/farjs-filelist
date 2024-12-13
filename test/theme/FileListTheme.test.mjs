@@ -3,7 +3,7 @@ import TestRenderer from "react-test-renderer";
 import assert from "node:assert/strict";
 import mockFunction from "mock-fn";
 import FileListTheme from "../../src/theme/FileListTheme.mjs";
-import withThemeContext from "./withThemeContext.mjs";
+import withThemeContext from "../../src/theme/withThemeContext.mjs";
 
 const h = React.createElement;
 
