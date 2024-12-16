@@ -1,4 +1,5 @@
 await import("./FileListActions.test.mjs");
+await import("./FileListColumn.test.mjs");
 await import("./FileListState.test.mjs");
 await import("./FileListStateReducer.test.mjs");
 
