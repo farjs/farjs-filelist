@@ -32,7 +32,11 @@ const { textLineComp } = FileListColumn;
 describe("FileListColumn.test.mjs", () => {
   it("should render non-empty component", () => {
     //given
-    const currTheme = FileListTheme.xterm256Theme;
+    const currTheme = { ...FileListTheme.xterm256Theme };
+    currTheme.fileList = {
+      ...currTheme.fileList,
+      archiveItem: { ...currTheme.fileList.archiveItem, bold: undefined },
+    };
     const props = {
       width: 14,
       height: 3,
@@ -69,7 +73,7 @@ describe("FileListColumn.test.mjs", () => {
         "{bold}{#055-fg}{#008-bg}.dir 4        {/}{bold}{#5ce-fg}{#008-bg}│{/}",
         "{bold}{#055-fg}{#008-bg}.file 5       {/}{bold}{#5ce-fg}{#008-bg}│{/}",
         "{bold}{#5ce-fg}{#008-bg} fileй 6      {/}{bold}{#5ce-fg}{#008-bg}│{/}",
-        "{bold}{#a05-fg}{#008-bg}file.zip      {/}{bold}{#5ce-fg}{#008-bg}│{/}",
+        "{#a05-fg}{#008-bg}file.zip      {/}{bold}{#5ce-fg}{#008-bg}│{/}",
       ].join("\n"),
       currTheme
     );
