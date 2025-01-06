@@ -4,7 +4,6 @@ export type FileListState = {
     readonly index: number;
     readonly currDir: FileListDir;
     readonly selectedNames: Set<string>;
-    readonly isActive: boolean;
     readonly diskSpace?: number;
     readonly sort: FileListSort;
 };
@@ -17,7 +16,6 @@ export type FileListSort = import("./sort/FileListSort.mjs").FileListSort;
  *  readonly index: number;
  *  readonly currDir: FileListDir;
  *  readonly selectedNames: Set<string>;
- *  readonly isActive: boolean;
  *  readonly diskSpace?: number;
  *  readonly sort: FileListSort;
  * }} FileListState

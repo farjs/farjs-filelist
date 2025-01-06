@@ -12,7 +12,6 @@ import SortMode from "./sort/SortMode.mjs";
  *  readonly index: number;
  *  readonly currDir: FileListDir;
  *  readonly selectedNames: Set<string>;
- *  readonly isActive: boolean;
  *  readonly diskSpace?: number;
  *  readonly sort: FileListSort;
  * }} FileListState
@@ -27,7 +26,6 @@ function FileListState() {
     index: 0,
     currDir: { path: "", isRoot: false, items: [] },
     selectedNames: new Set(),
-    isActive: false,
     sort: { mode: SortMode.Name, asc: true },
   };
 }
@@ -59,7 +57,6 @@ FileListState.isFileListState = (s) => {
     typeof s.index === "number" &&
     isFileListDir(s.currDir) &&
     isSet(s.selectedNames) &&
-    typeof s.isActive === "boolean" &&
     isFileListSort(s.sort)
   );
 };
