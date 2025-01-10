@@ -16,9 +16,10 @@ const TestStubComponent = () => h("test stub");
  *
  * @param {React.ReactElement<any>} element
  * @param {Partial<WithStackProps>} props
+ * @param {boolean} [isActive]
  * @returns {React.ReactElement<any>}
  */
-const withStackContext = (element, props = {}) => {
+const withStackContext = (element, props = {}, isActive) => {
   return h(
     WithStack.Context.Provider,
     {
@@ -26,7 +27,7 @@ const withStackContext = (element, props = {}) => {
         isRight: false,
         panelInput: /** @type {BlessedElement} */ ({}),
         stack: new PanelStack(
-          false,
+          !!isActive,
           [new PanelStackItem(TestStubComponent)],
           () => {}
         ),

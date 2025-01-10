@@ -6,7 +6,8 @@ export type WithStackProps = import("./WithStack.mjs").WithStackProps;
  *
  * @param {React.ReactElement<any>} element
  * @param {Partial<WithStackProps>} props
+ * @param {boolean} [isActive]
  * @returns {React.ReactElement<any>}
  */
-declare function withStackContext(element: React.ReactElement<any>, props?: Partial<WithStackProps>): React.ReactElement<any>;
+declare function withStackContext(element: React.ReactElement<any>, props?: Partial<WithStackProps>, isActive?: boolean | undefined): React.ReactElement<any>;
 import React from "react";
