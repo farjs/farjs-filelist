@@ -5,6 +5,7 @@
  * @typedef {import("./FileListActions.mjs").FileListAction} FileListAction
  * @typedef {import("./FileListState.mjs").FileListState} FileListState
  */
+import { stripPrefix } from "./utils.mjs";
 import FileListItem from "./api/FileListItem.mjs";
 import FileListSort from "./sort/FileListSort.mjs";
 import FileListState from "./FileListState.mjs";
@@ -127,15 +128,6 @@ function FileListStateReducer(state, action) {
     default:
       return state;
   }
-}
-
-/**
- * @param {string} s
- * @param {string} prefix
- * @returns {string}
- */
-function stripPrefix(s, prefix) {
-  return s.startsWith(prefix) ? s.substring(prefix.length) : s;
 }
 
 /**

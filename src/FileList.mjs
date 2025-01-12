@@ -5,6 +5,7 @@
  * @typedef {import("./FileListState.mjs").FileListState} FileListState
  */
 import React, { useLayoutEffect } from "react";
+import { isEqualSets, stripPrefix } from "./utils.mjs";
 import WithStack from "./stack/WithStack.mjs";
 import FileListItem from "./api/FileListItem.mjs";
 import FileListActions from "./FileListActions.mjs";
@@ -174,7 +175,7 @@ const FileList = (props) => {
     },
     onKeypress: (screen, keyFull) => {
       const select = keyFull.startsWith("S-");
-      const key = select ? keyFull.substring("S-".length) : keyFull;
+      const key = stripPrefix(keyFull, "S-");
       switch (key) {
         case "up":
           focusDx(-1, select);
@@ -211,18 +212,5 @@ const FileList = (props) => {
 
 FileList.displayName = "FileList";
 FileList.fileListViewComp = FileListView;
-
-/**
- * @template {any} T
- * @param {Set<T>} a
- * @param {Set<T>} b
- * @returns {boolean}
- */
-function isEqualSets(a, b) {
-  if (a === b) return true;
-  if (a.size !== b.size) return false;
-  for (const value of a) if (!b.has(value)) return false;
-  return true;
-}
 
 export default FileList;
