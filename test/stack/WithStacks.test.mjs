@@ -8,7 +8,9 @@ import mockFunction from "mock-fn";
 import TestRenderer from "react-test-renderer";
 import { assertComponents, TestErrorBoundary } from "react-assert";
 import PanelStack from "../../src/stack/PanelStack.mjs";
+import WithStacksData from "../../src/stack/WithStacksData.mjs";
 import WithStacksProps from "../../src/stack/WithStacksProps.mjs";
+import withStacksContext from "../../src/stack/withStacksContext.mjs";
 import WithStacks from "../../src/stack/WithStacks.mjs";
 
 const h = React.createElement;
@@ -23,14 +25,11 @@ const { describe, it } = await (async () => {
 })();
 
 const props = WithStacksProps(
-  {
-    stack: new PanelStack(true, [], mockFunction()),
-    input: /** @type {BlessedElement} */ ({}),
-  },
-  {
-    stack: new PanelStack(false, [], mockFunction()),
-    input: /** @type {BlessedElement} */ ({}),
-  }
+  WithStacksData(new PanelStack(true, [], mockFunction())),
+  WithStacksData(
+    new PanelStack(false, [], mockFunction()),
+    /** @type {BlessedElement} */ ({})
+  )
 );
 
 describe("WithStacks.test.mjs", () => {
@@ -91,6 +90,34 @@ describe("WithStacks.test.mjs", () => {
     assert.deepEqual(otherContent, "some other content");
   });
 
+  it("should render component when withStacksContext", () => {
+    //given
+    const [stacksCtx, stacksComp] = getStacksCtxHook();
+
+    //when
+    const result = TestRenderer.create(
+      withStacksContext(
+        h(
+          React.Fragment,
+          null,
+          h(stacksComp, null),
+          h(React.Fragment, null, "some other content")
+        ),
+        props
+      )
+    ).root;
+
+    //then
+    assert.deepEqual(WithStacks.displayName, "WithStacks");
+    assert.deepEqual(stacksCtx.current, props);
+    assert.deepEqual(result.children.length, 2);
+    const [resCtxHook, otherContent] = result.children.map(
+      (_) => /** @type {TestRenderer.ReactTestInstance} */ (_)
+    );
+    assert.deepEqual(resCtxHook.type, stacksComp);
+    assert.deepEqual(otherContent, "some other content");
+  });
+
   it("should return active stack when WithStacksProps.active()", () => {
     //given
     const { left, right } = props;
@@ -117,7 +144,7 @@ describe("WithStacks.test.mjs", () => {
 });
 
 /**
- * @returns {[React.MutableRefObject<WithStacksProps | null>, () => React.ReactElement]}
+ * @returns {[React.MutableRefObject<WithStacksProps | null>, () => React.ReactElement<any>]}
  */
 function getStacksCtxHook() {
   /** @type {React.MutableRefObject<WithStacksProps | null>} */

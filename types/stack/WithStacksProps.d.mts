@@ -1,18 +1,11 @@
 export default WithStacksProps;
-export type WithStacksData = {
-    readonly stack: PanelStack;
-    readonly input: BlessedElement;
-};
+export type WithStacksData = import("./WithStacksData.mjs").WithStacksData;
 export type WithStacksProps = {
     readonly left: WithStacksData;
     readonly right: WithStacksData;
 };
-export type BlessedElement = import("@farjs/blessed").Widgets.BlessedElement;
 /**
- * @typedef {{
- *  readonly stack: PanelStack;
- *  readonly input: BlessedElement;
- * }} WithStacksData
+ * @typedef {import("./WithStacksData.mjs").WithStacksData} WithStacksData
  */
 /**
  * @typedef {{
@@ -31,11 +24,10 @@ declare namespace WithStacksProps {
      * @param {WithStacksProps} stacks
      * @returns {WithStacksData}
      */
-    function active(stacks: WithStacksProps): WithStacksData;
+    function active(stacks: WithStacksProps): import("./WithStacksData.mjs").WithStacksData;
     /**
      * @param {WithStacksProps} stacks
      * @returns {WithStacksData}
      */
-    function nonActive(stacks: WithStacksProps): WithStacksData;
+    function nonActive(stacks: WithStacksProps): import("./WithStacksData.mjs").WithStacksData;
 }
-import PanelStack from "./PanelStack.mjs";

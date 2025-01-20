@@ -1,13 +1,5 @@
 /**
- * @typedef {import("@farjs/blessed").Widgets.BlessedElement} BlessedElement
- */
-import PanelStack from "./PanelStack.mjs";
-
-/**
- * @typedef {{
- *  readonly stack: PanelStack;
- *  readonly input: BlessedElement;
- * }} WithStacksData
+ * @typedef {import("./WithStacksData.mjs").WithStacksData} WithStacksData
  */
 
 /**
