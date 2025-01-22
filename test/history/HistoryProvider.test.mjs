@@ -4,6 +4,8 @@ import assert from "node:assert/strict";
 import mockFunction from "mock-fn";
 import { assertComponents, TestErrorBoundary } from "react-assert";
 import HistoryProvider from "../../src/history/HistoryProvider.mjs";
+import withHistoryProvider from "../../src/history/withHistoryProvider.mjs";
+import MockHistoryProvider from "../../src/history/MockHistoryProvider.mjs";
 
 const h = React.createElement;
 
@@ -71,5 +73,24 @@ describe("HistoryProvider.test.mjs", () => {
     //then
     assert.deepEqual(result.type, TestComp);
     assert.deepEqual(capturedProvider === HistoryProviderMock, true);
+  });
+
+  it("should return HistoryProvider when withHistoryProvider", () => {
+    //given
+    const historyProvider = new MockHistoryProvider();
+    let capturedProvider = null;
+    const TestComp = () => {
+      capturedProvider = HistoryProvider.useHistoryProvider();
+      return null;
+    };
+
+    //when
+    const result = TestRenderer.create(
+      withHistoryProvider(h(TestComp, null), historyProvider)
+    ).root;
+
+    //then
+    assert.deepEqual(result.type, TestComp);
+    assert.deepEqual(capturedProvider === historyProvider, true);
   });
 });
