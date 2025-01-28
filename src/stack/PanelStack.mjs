@@ -1,5 +1,5 @@
 /**
- * @typedef {import("./PanelStackItem.mjs").ReactComponent} ReactComponent
+ * @typedef {import("../FileListData.mjs").ReactComponent} ReactComponent
  */
 import PanelStackItem from "./PanelStackItem.mjs";
 

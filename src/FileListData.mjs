@@ -6,6 +6,7 @@ import FileListActions from "./FileListActions.mjs";
 
 /**
  * @typedef {(a: any) => void} Dispatch
+ * @typedef {React.FunctionComponent<any> | React.ComponentClass<any>} ReactComponent
  */
 
 /**

@@ -1,15 +1,11 @@
 /**
  * @typedef {import("../FileListData.mjs").Dispatch} Dispatch
+ * @typedef {import("../FileListData.mjs").ReactComponent} ReactComponent
  * @typedef {import("../FileListData.mjs").FileListData} FileListData
  */
-import React from "react";
 import FileListData from "../FileListData.mjs";
 import FileListState from "../FileListState.mjs";
 import FileListActions from "../FileListActions.mjs";
-
-/**
- * @typedef {React.FunctionComponent<any> | React.ComponentClass<any>} ReactComponent
- */
 
 /**
  * @template T

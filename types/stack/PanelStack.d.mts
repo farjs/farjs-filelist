@@ -1,5 +1,5 @@
 export default PanelStack;
-export type ReactComponent = import("./PanelStackItem.mjs").ReactComponent;
+export type ReactComponent = import("../FileListData.mjs").ReactComponent;
 declare class PanelStack {
     /**
      * @param {boolean} isActive

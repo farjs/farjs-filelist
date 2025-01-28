@@ -1,10 +1,7 @@
 export default PanelStackItem;
 export type Dispatch = import("../FileListData.mjs").Dispatch;
+export type ReactComponent = import("../FileListData.mjs").ReactComponent;
 export type FileListData = import("../FileListData.mjs").FileListData;
-export type ReactComponent = React.FunctionComponent<any> | React.ComponentClass<any>;
-/**
- * @typedef {React.FunctionComponent<any> | React.ComponentClass<any>} ReactComponent
- */
 /**
  * @template T
  */
@@ -39,6 +36,5 @@ declare class PanelStackItem<T> {
      */
     getData(): FileListData | undefined;
 }
-import React from "react";
 import FileListActions from "../FileListActions.mjs";
 import FileListData from "../FileListData.mjs";

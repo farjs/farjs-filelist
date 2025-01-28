@@ -1,5 +1,6 @@
 export default FileListData;
 export type Dispatch = (a: any) => void;
+export type ReactComponent = React.FunctionComponent<any> | React.ComponentClass<any>;
 export type FileListData = {
     readonly dispatch: Dispatch;
     readonly actions: FileListActions;
@@ -9,6 +10,7 @@ export type FileListAction = import("./FileListActions.mjs").FileListAction;
 export type FileListState = import("./FileListState.mjs").FileListState;
 /**
  * @typedef {(a: any) => void} Dispatch
+ * @typedef {React.FunctionComponent<any> | React.ComponentClass<any>} ReactComponent
  */
 /**
  * @typedef {{
