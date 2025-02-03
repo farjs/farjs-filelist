@@ -25,7 +25,7 @@ export type FileListSort = import("./sort/FileListSort.mjs").FileListSort;
  */
 declare function FileListState(): FileListState;
 declare namespace FileListState {
-    function currentItem(s: FileListState): import("./api/FileListItem.mjs").FileListItem | undefined;
+    function currentItem(s: FileListState, p?: ((item: import("./api/FileListItem.mjs").FileListItem) => boolean) | undefined): import("./api/FileListItem.mjs").FileListItem | undefined;
     function selectedItems(s: FileListState): import("./api/FileListItem.mjs").FileListItem[];
     function isFileListState(s: any): boolean;
 }

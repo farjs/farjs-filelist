@@ -50,6 +50,24 @@ describe("FileListState.test.mjs", () => {
     );
   });
 
+  it("should return current item depending on predicate when currentItem", () => {
+    //given
+    const item1 = FileListItem("dir 1");
+    const item2 = FileListItem("file 1");
+    const currDir = FileListDir("/folder", false, [item1, item2]);
+    const s = FileListState();
+
+    //when & then
+    assert.deepEqual(
+      currentItem({ ...s, currDir }, (_) => true),
+      item1
+    );
+    assert.deepEqual(
+      currentItem({ ...s, currDir }, (_) => false),
+      undefined
+    );
+  });
+
   it("should return selected items depending on state when selectedItems", () => {
     //given
     const item1 = FileListItem("dir 1");

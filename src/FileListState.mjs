@@ -30,11 +30,12 @@ function FileListState() {
   };
 }
 
-/** @type {(s: FileListState) => FileListItem | undefined} */
-FileListState.currentItem = (s) => {
+/** @type {(s: FileListState, p?: (item: FileListItem) => boolean) => FileListItem | undefined} */
+FileListState.currentItem = (s, p) => {
   const itemIndex = s.offset + s.index;
   if (itemIndex >= 0 && itemIndex < s.currDir.items.length) {
-    return s.currDir.items[itemIndex];
+    const item = s.currDir.items[itemIndex];
+    return !p || p(item) ? item : undefined;
   }
   return undefined;
 };
