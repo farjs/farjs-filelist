@@ -28,7 +28,7 @@ const { describe, it } = await (async () => {
 })();
 
 describe("FileListPanelController.test.mjs", () => {
-  it("should render component", () => {
+  it("should render panel component", () => {
     //given
     const dispatch = mockFunction();
     const actions = new MockFileListActions();
@@ -50,6 +50,26 @@ describe("FileListPanelController.test.mjs", () => {
 
     //then
     assertFileListPanelController(result, data, controller, fileListPanelComp);
+  });
+
+  it("should render empty component", () => {
+    //given
+    const fileListPanelComp = () => null;
+    const controller = FileListPanelController(fileListPanelComp);
+    const fsPanelComp = () => null;
+    const stack = new PanelStack(
+      true,
+      [new PanelStackItem(fsPanelComp)],
+      mockFunction()
+    );
+
+    //when
+    const result = TestRenderer.create(
+      withStackContext(h(controller, null), { stack })
+    ).root;
+
+    //then
+    assert.deepEqual(result.children, []);
   });
 });
 
