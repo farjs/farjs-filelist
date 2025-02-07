@@ -3,6 +3,7 @@ await import("./FileListActions.test.mjs");
 await import("./FileListColumn.test.mjs");
 await import("./FileListEvent.test.mjs");
 await import("./FileListPanel.test.mjs");
+await import("./FileListPanelController.test.mjs");
 await import("./FileListPanelView.test.mjs");
 await import("./FileListPlugin.test.mjs");
 await import("./FileListQuickSearch.test.mjs");
