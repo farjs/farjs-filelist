@@ -8,7 +8,7 @@ export type History = {
     readonly params?: object;
 };
 export type HistoryService = {
-    getAll(): Promise<History[]>;
+    getAll(): Promise<readonly History[]>;
     getOne(item: string): Promise<History | undefined>;
     save(h: History): Promise<void>;
 };
@@ -16,7 +16,7 @@ export type HistoryProvider = {
     get(kind: HistoryKind): Promise<HistoryService>;
 };
 declare namespace HistoryProvider {
-    const Context: React.Context<HistoryProvider | null>;
+    let Context: React.Context<HistoryProvider | null>;
     function useHistoryProvider(): HistoryProvider;
 }
 import React from "react";

@@ -19,11 +19,13 @@ export type WithStackProps = {
 /**
  * @param {WithStackProps} props
  */
-declare function WithStack(props: WithStackProps): React.FunctionComponentElement<import("@farjs/ui/WithSize.mjs").WithSizeProps>;
+declare function WithStack(props: WithStackProps): React.FunctionComponentElement<{
+    render: (width: number, height: number) => React.FunctionComponentElement<React.ProviderProps<WithStackProps | null>>;
+}>;
 declare namespace WithStack {
-    export const displayName: string;
+    export let displayName: string;
     export { WithSize as withSizeComp };
-    export const Context: React.Context<WithStackProps | null>;
+    export let Context: React.Context<WithStackProps | null>;
     export function useStack(): WithStackProps;
 }
 import PanelStack from "./PanelStack.mjs";

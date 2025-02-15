@@ -15,7 +15,6 @@ export type ThemeFileList = {
 };
 declare namespace FileListTheme {
     function useTheme(): FileListTheme;
-    const defaultTheme: FileListTheme;
-    const xterm256Theme: FileListTheme;
+    let defaultTheme: FileListTheme;
+    let xterm256Theme: FileListTheme;
 }
-import Theme from "@farjs/ui/theme/Theme.mjs";

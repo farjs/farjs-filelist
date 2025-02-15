@@ -1,7 +1,7 @@
 export default MockHistoryProvider;
 export type HistoryProvider = import("./HistoryProvider.mjs").HistoryProvider;
 export type HistoryProviderMocks = {
-    get?: HistoryProvider['get'];
+    get?: HistoryProvider["get"];
 };
 /**
  * @typedef {import("./HistoryProvider.mjs").HistoryProvider} HistoryProvider

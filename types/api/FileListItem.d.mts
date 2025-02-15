@@ -28,8 +28,8 @@ export type FileListItem = {
  * @param {boolean} [isDir]
  * @returns {FileListItem}
  */
-declare function FileListItem(name: string, isDir?: boolean | undefined): FileListItem;
+declare function FileListItem(name: string, isDir?: boolean): FileListItem;
 declare namespace FileListItem {
-    const up: FileListItem;
-    const currDir: FileListItem;
+    let up: FileListItem;
+    let currDir: FileListItem;
 }

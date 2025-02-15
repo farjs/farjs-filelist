@@ -63,17 +63,17 @@ declare class FileListActions {
     /**
      * @param {(a: any) => any} dispatch
      * @param {string} parent
-     * @param {FileListItem[]} items
+     * @param {readonly FileListItem[]} items
      * @returns {import("@farjs/ui/task/TaskAction.mjs").TaskAction<void>}
      */
-    deleteItems(dispatch: (a: any) => any, parent: string, items: FileListItem[]): import("@farjs/ui/task/TaskAction.mjs").TaskAction<void>;
+    deleteItems(dispatch: (a: any) => any, parent: string, items: readonly FileListItem[]): import("@farjs/ui/task/TaskAction.mjs").TaskAction<void>;
     /**
      * @param {string} parent
-     * @param {FileListItem[]} items
-     * @param {(path: string, items: FileListItem[]) => boolean} onNextDir
+     * @param {readonly FileListItem[]} items
+     * @param {(path: string, items: readonly FileListItem[]) => boolean} onNextDir
      * @returns {Promise<boolean>}
      */
-    scanDirs(parent: string, items: FileListItem[], onNextDir: (path: string, items: FileListItem[]) => boolean): Promise<boolean>;
+    scanDirs(parent: string, items: readonly FileListItem[], onNextDir: (path: string, items: readonly FileListItem[]) => boolean): Promise<boolean>;
     /**
      * @param {string} srcDir
      * @param {FileListItem} srcItem

@@ -54,7 +54,7 @@ class FileListApi {
 
   /**
    * @param {string} parent
-   * @param {FileListItem[]} items
+   * @param {readonly FileListItem[]} items
    * @returns {Promise<void>}
    */
   //@ts-ignore
@@ -63,7 +63,7 @@ class FileListApi {
   }
 
   /**
-   * @param {string[]} dirs
+   * @param {readonly string[]} dirs
    * @returns {Promise<string>}
    */
   //@ts-ignore

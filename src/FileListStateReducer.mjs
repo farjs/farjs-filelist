@@ -137,7 +137,7 @@ function FileListStateReducer(state, action) {
  */
 function processDir(currDir, sort) {
   /**
-   * @returns {FileListItem[]}
+   * @returns {readonly FileListItem[]}
    */
   function sortCurrItems() {
     const dirs = currDir.items.filter(
@@ -158,13 +158,13 @@ function processDir(currDir, sort) {
 }
 
 /**
- * @param {FileListItem[]} items
+ * @param {readonly FileListItem[]} items
  * @param {FileListSort} sort
- * @returns {FileListItem[]}
+ * @returns {readonly FileListItem[]}
  */
 function sortItems(items, sort) {
   const sorted = FileListSort.sortItems(items, sort.mode);
-  return sort.asc ? sorted : sorted.reverse();
+  return sort.asc ? sorted : [...sorted].reverse();
 }
 
 export default FileListStateReducer;

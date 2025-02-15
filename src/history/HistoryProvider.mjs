@@ -16,7 +16,7 @@ import React, { useContext } from "react";
 
 /**
  * @typedef {{
- *   getAll(): Promise<History[]>;
+ *   getAll(): Promise<readonly History[]>;
  *   getOne(item: string): Promise<History | undefined>;
  *   save(h: History): Promise<void>;
  * }} HistoryService

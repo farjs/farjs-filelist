@@ -50,18 +50,18 @@ declare class FileListApi {
      * @param {string} [dir]
      * @returns {Promise<FileListDir>}
      */
-    readDir(path: string, dir?: string | undefined): Promise<FileListDir>;
+    readDir(path: string, dir?: string): Promise<FileListDir>;
     /**
      * @param {string} parent
-     * @param {FileListItem[]} items
+     * @param {readonly FileListItem[]} items
      * @returns {Promise<void>}
      */
-    delete(parent: string, items: FileListItem[]): Promise<void>;
+    delete(parent: string, items: readonly FileListItem[]): Promise<void>;
     /**
-     * @param {string[]} dirs
+     * @param {readonly string[]} dirs
      * @returns {Promise<string>}
      */
-    mkDirs(dirs: string[]): Promise<string>;
+    mkDirs(dirs: readonly string[]): Promise<string>;
     /**
      * @param {string} parent
      * @param {FileListItem} item

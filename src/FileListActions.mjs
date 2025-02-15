@@ -77,7 +77,7 @@ class FileListActions {
   /**
    * @param {(a: any) => any} dispatch
    * @param {string} parent
-   * @param {FileListItem[]} items
+   * @param {readonly FileListItem[]} items
    * @returns {import("@farjs/ui/task/TaskAction.mjs").TaskAction<void>}
    */
   deleteItems(dispatch, parent, items) {
@@ -90,8 +90,8 @@ class FileListActions {
 
   /**
    * @param {string} parent
-   * @param {FileListItem[]} items
-   * @param {(path: string, items: FileListItem[]) => boolean} onNextDir
+   * @param {readonly FileListItem[]} items
+   * @param {(path: string, items: readonly FileListItem[]) => boolean} onNextDir
    * @returns {Promise<boolean>}
    */
   scanDirs(parent, items, onNextDir) {

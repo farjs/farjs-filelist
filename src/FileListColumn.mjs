@@ -18,7 +18,7 @@ const h = React.createElement;
  *  readonly height: number;
  *  readonly left: number;
  *  readonly borderCh: string;
- *  readonly items: FileListItem[];
+ *  readonly items: readonly FileListItem[];
  *  readonly focusedIndex: number;
  *  readonly selectedNames: Set<string>;
  * }} FileListColumnProps

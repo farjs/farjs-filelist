@@ -6,14 +6,14 @@
  * @typedef {{
  *  readonly path: string;
  *  readonly isRoot: boolean;
- *  readonly items: FileListItem[];
+ *  readonly items: readonly FileListItem[];
  * }} FileListDir
  */
 
 /**
  * @param {string} path
  * @param {boolean} isRoot
- * @param {FileListItem[]} items
+ * @param {readonly FileListItem[]} items
  * @returns {FileListDir}
  */
 function FileListDir(path, isRoot, items) {

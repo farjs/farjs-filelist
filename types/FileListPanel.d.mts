@@ -23,13 +23,12 @@ export type FileListPanelProps = {
  */
 declare function FileListPanel(props: FileListPanelProps): React.FunctionComponentElement<{}>;
 declare namespace FileListPanel {
-    export const displayName: string;
+    export let displayName: string;
     export { FileListPanelView as fileListPanelView };
     export { FileListQuickSearch as fileListQuickSearch };
     export { SortModesPopup as sortModesPopup };
 }
 import FileListActions from "./FileListActions.mjs";
-import FileListState from "./FileListState.mjs";
 import React from "react";
 import FileListPanelView from "./FileListPanelView.mjs";
 import FileListQuickSearch from "./FileListQuickSearch.mjs";

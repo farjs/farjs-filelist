@@ -1,9 +1,9 @@
 export default MockFileSource;
 export type FileSource = import("./FileListApi.mjs").FileSource;
 export type FileSourceMocks = {
-    file?: FileSource['file'];
-    readNextBytes?: FileSource['readNextBytes'];
-    close?: FileSource['close'];
+    file?: FileSource["file"];
+    readNextBytes?: FileSource["readNextBytes"];
+    close?: FileSource["close"];
 };
 /**
  * @typedef {import("./FileListApi.mjs").FileSource} FileSource

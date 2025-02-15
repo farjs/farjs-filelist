@@ -12,7 +12,7 @@ declare class PanelStackItem<T> {
      * @param {FileListActions} [actions]
      * @param {T} [state]
      */
-    constructor(component: ReactComponent, dispatch?: import("../FileListData.mjs").Dispatch | undefined, actions?: FileListActions | undefined, state?: T | undefined);
+    constructor(component: ReactComponent, dispatch?: Dispatch, actions?: FileListActions, state?: T);
     /** @readonly @type {ReactComponent} */
     readonly component: ReactComponent;
     /** @readonly @type {Dispatch | undefined} */
@@ -37,4 +37,3 @@ declare class PanelStackItem<T> {
     getData(): FileListData | undefined;
 }
 import FileListActions from "../FileListActions.mjs";
-import FileListData from "../FileListData.mjs";

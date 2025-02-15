@@ -22,7 +22,7 @@ const h = React.createElement;
  *  readonly width: number;
  *  readonly height: number;
  *  readonly columns: number;
- *  readonly items: FileListItem[];
+ *  readonly items: readonly FileListItem[];
  *  readonly focusedIndex: number;
  *  readonly selectedNames: Set<string>;
  *  onWheel(isUp: boolean): void;
@@ -52,9 +52,8 @@ const FileListView = (props) => {
    *  readonly colWidth: number;
    * }} ColumnInfo
    */
-  const columnsPosRef = /** @type {React.MutableRefObject<ColumnInfo[]>} */ (
-    useRef()
-  );
+  const columnsPosRef =
+    /** @type {React.MutableRefObject<readonly ColumnInfo[]>} */ (useRef());
   const inputEl = WithStack.useStack().panelInput;
   const currTheme = FileListTheme.useTheme();
   const { width, height, columns } = props;
@@ -119,7 +118,7 @@ const FileListView = (props) => {
 
   const colSize = columnSizeRef.current;
 
-  /** @type {React.ReactNode[]} */
+  /** @type {readonly React.ReactNode[]} */
   const renderedColumns =
     colSize > 0
       ? columnsPosRef.current.flatMap(({ colLeft, colWidth }, colIndex) => {

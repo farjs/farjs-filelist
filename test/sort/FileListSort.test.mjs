@@ -76,9 +76,9 @@ describe("FileListSort.test.mjs", () => {
     const itemsR = [...items].reverse();
     
     /**
-     * @param {FileListItem[]} items
+     * @param {readonly FileListItem[]} items
      * @param {SortMode} mode
-     * @param {FileListItem[]} expectedItems
+     * @param {readonly FileListItem[]} expectedItems
      */
     function check(items, mode, expectedItems) {
       //when

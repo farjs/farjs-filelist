@@ -9,7 +9,7 @@ export type FileListViewProps = {
     readonly width: number;
     readonly height: number;
     readonly columns: number;
-    readonly items: FileListItem[];
+    readonly items: readonly FileListItem[];
     readonly focusedIndex: number;
     readonly selectedNames: Set<string>;
     onWheel(isUp: boolean): void;
@@ -21,7 +21,7 @@ export type FileListViewProps = {
  *  readonly width: number;
  *  readonly height: number;
  *  readonly columns: number;
- *  readonly items: FileListItem[];
+ *  readonly items: readonly FileListItem[];
  *  readonly focusedIndex: number;
  *  readonly selectedNames: Set<string>;
  *  onWheel(isUp: boolean): void;
@@ -40,11 +40,10 @@ declare function FileListView(props: FileListViewProps): React.ReactElement<{
     top: number;
 }, string | React.JSXElementConstructor<any>>;
 declare namespace FileListView {
-    export const displayName: string;
+    export let displayName: string;
     export { VerticalLine as verticalLineComp };
     export { FileListColumn as fileListColumnComp };
 }
-import FileListItem from "./api/FileListItem.mjs";
 import React from "react";
 import VerticalLine from "@farjs/ui/border/VerticalLine.mjs";
 import FileListColumn from "./FileListColumn.mjs";

@@ -26,7 +26,6 @@ declare namespace FileListSort {
     export { nextSort };
     export { sortItems };
 }
-import SortMode from "./SortMode.mjs";
 /**
  * @typedef {{
  *  readonly mode: SortMode;
@@ -40,8 +39,8 @@ import SortMode from "./SortMode.mjs";
  */
 declare function nextSort(sort: FileListSort, nextMode: SortMode): FileListSort;
 /**
- * @param {FileListItem[]} items
+ * @param {readonly FileListItem[]} items
  * @param {SortMode} mode
- * @returns {FileListItem[]}
+ * @returns {readonly FileListItem[]}
  */
-declare function sortItems(items: FileListItem[], mode: SortMode): FileListItem[];
+declare function sortItems(items: readonly FileListItem[], mode: SortMode): readonly FileListItem[];

@@ -15,5 +15,5 @@ export type BlessedElement = import("@farjs/blessed").Widgets.BlessedElement;
  * @param {BlessedElement} [input]
  * @returns {WithStacksData}
  */
-declare function WithStacksData(stack: PanelStack, input?: import("blessed").Widgets.BlessedElement | undefined): WithStacksData;
+declare function WithStacksData(stack: PanelStack, input?: BlessedElement): WithStacksData;
 import PanelStack from "./PanelStack.mjs";

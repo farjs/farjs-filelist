@@ -88,14 +88,14 @@ function sortByExt(a, b) {
 }
 
 /**
- * @param {FileListItem[]} items
+ * @param {readonly FileListItem[]} items
  * @param {SortMode} mode
- * @returns {FileListItem[]}
+ * @returns {readonly FileListItem[]}
  */
 function sortItems(items, mode) {
   /**
    * @param {(a: SortableItem, b: SortableItem) => number} compareFn
-   * @returns {FileListItem[]}
+   * @returns {readonly FileListItem[]}
    */
   function doSort(compareFn) {
     const sortableItems = items.map((item, idx) => {

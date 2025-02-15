@@ -24,7 +24,7 @@ declare function FileListPanelView(props: FileListPanelViewProps): React.ReactEl
     style: import("@farjs/ui/theme/Theme.mjs").ThemeEffects;
 }, string | React.JSXElementConstructor<any>>;
 declare namespace FileListPanelView {
-    export const displayName: string;
+    export let displayName: string;
     export { DoubleBorder as doubleBorderComp };
     export { HorizontalLine as horizontalLineComp };
     export { FileList as fileListComp };
@@ -32,7 +32,6 @@ declare namespace FileListPanelView {
     export { SortIndicator as sortIndicator };
 }
 import FileListActions from "./FileListActions.mjs";
-import FileListState from "./FileListState.mjs";
 import React from "react";
 import DoubleBorder from "@farjs/ui/border/DoubleBorder.mjs";
 import HorizontalLine from "@farjs/ui/border/HorizontalLine.mjs";

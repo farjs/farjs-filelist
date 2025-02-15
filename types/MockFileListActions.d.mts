@@ -1,12 +1,12 @@
 export default MockFileListActions;
 export type FileListActionsMocks = {
-    api?: FileListActions['api'];
-    changeDir?: FileListActions['changeDir'];
-    updateDir?: FileListActions['updateDir'];
-    createDir?: FileListActions['createDir'];
-    deleteItems?: FileListActions['deleteItems'];
-    scanDirs?: FileListActions['scanDirs'];
-    copyFile?: FileListActions['copyFile'];
+    api?: FileListActions["api"];
+    changeDir?: FileListActions["changeDir"];
+    updateDir?: FileListActions["updateDir"];
+    createDir?: FileListActions["createDir"];
+    deleteItems?: FileListActions["deleteItems"];
+    scanDirs?: FileListActions["scanDirs"];
+    copyFile?: FileListActions["copyFile"];
 };
 /**
  * @typedef {{

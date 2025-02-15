@@ -6,17 +6,17 @@ import PanelStackItem from "./PanelStackItem.mjs";
 class PanelStack {
   /**
    * @param {boolean} isActive
-   * @param {PanelStackItem<any>[]} data
-   * @param {(f: (data: PanelStackItem<any>[]) => PanelStackItem<any>[]) => void} updater
+   * @param {readonly PanelStackItem<any>[]} data
+   * @param {(f: (data: readonly PanelStackItem<any>[]) => readonly PanelStackItem<any>[]) => void} updater
    */
   constructor(isActive, data, updater) {
     /** @readonly @type {boolean} */
     this.isActive = isActive;
 
-    /** @private @readonly @type {PanelStackItem<any>[]} */
+    /** @private @readonly @type {readonly PanelStackItem<any>[]} */
     this._data = data;
 
-    /** @private @readonly @type {(f: (data: PanelStackItem<any>[]) => PanelStackItem<any>[]) => void} */
+    /** @private @readonly @type {(f: (data: readonly PanelStackItem<any>[]) => readonly PanelStackItem<any>[]) => void} */
     this._updater = updater;
   }
 
@@ -116,7 +116,7 @@ class PanelStack {
 }
 
 /**
- * @param {PanelStackItem<any>[]} data
+ * @param {readonly PanelStackItem<any>[]} data
  */
 function ensureNonEmpty(data) {
   if (data.length === 0) {

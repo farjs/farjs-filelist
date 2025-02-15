@@ -38,7 +38,7 @@ declare function FileList(props: FileListProps): React.FunctionComponentElement<
     onKeypress: (screen: import("blessed").Widgets.Screen, keyFull: string) => void;
 }>;
 declare namespace FileList {
-    export const displayName: string;
+    export let displayName: string;
     export { FileListView as fileListViewComp };
 }
 import FileListActions from "./FileListActions.mjs";

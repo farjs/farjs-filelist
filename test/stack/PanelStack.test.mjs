@@ -51,7 +51,7 @@ describe("PanelStack.test.mjs", () => {
       result = updateFn(data);
     });
     const stack = new PanelStack(false, [], updater);
-    const data = /** @type {PanelStackItem<any>[]} */ ([]);
+    const data = /** @type {readonly PanelStackItem<any>[]} */ ([]);
 
     //when
     stack.update((_) => _.withState({}));

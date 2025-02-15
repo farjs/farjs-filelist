@@ -15,11 +15,11 @@ export type FileListPluginUiProps = {
  */
 declare class FileListPlugin {
     /**
-     * @param {string[]} triggerKeys
+     * @param {readonly string[]} triggerKeys
      */
-    constructor(triggerKeys: string[]);
-    /** @readonly @type {string[]} */
-    readonly triggerKeys: string[];
+    constructor(triggerKeys: readonly string[]);
+    /** @readonly @type {readonly string[]} */
+    readonly triggerKeys: readonly string[];
     /**
      * @param {string} key
      * @param {WithStacksProps} stacks

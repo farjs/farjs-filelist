@@ -22,7 +22,7 @@ declare function SortModesPopup(props: SortModesPopupProps): React.FunctionCompo
     onClose: () => void;
 }>;
 declare namespace SortModesPopup {
-    export const displayName: string;
+    export let displayName: string;
     export { MenuPopup as menuPopup };
 }
 import React from "react";

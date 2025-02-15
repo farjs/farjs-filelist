@@ -25,12 +25,12 @@ declare function SortIndicator(props: SortIndicatorProps): React.DOMElement<{
     content: string;
 }, Element>;
 declare namespace SortIndicator {
-    const displayName: string;
+    let displayName: string;
     /**
      * @private
      * @param {FileListSort} sort
      * @returns {string}
      */
-    function _getIndicator(sort: import("./FileListSort.mjs").FileListSort): string;
+    function _getIndicator(sort: FileListSort): string;
 }
 import React from "react";

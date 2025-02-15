@@ -24,10 +24,10 @@ declare namespace WithStacksProps {
      * @param {WithStacksProps} stacks
      * @returns {WithStacksData}
      */
-    function active(stacks: WithStacksProps): import("./WithStacksData.mjs").WithStacksData;
+    function active(stacks: WithStacksProps): WithStacksData;
     /**
      * @param {WithStacksProps} stacks
      * @returns {WithStacksData}
      */
-    function nonActive(stacks: WithStacksProps): import("./WithStacksData.mjs").WithStacksData;
+    function nonActive(stacks: WithStacksProps): WithStacksData;
 }

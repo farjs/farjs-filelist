@@ -22,7 +22,7 @@ declare function FileListQuickSearch(props: FileListQuickSearchProps): React.DOM
     onClick: () => void;
 }, Element>;
 declare namespace FileListQuickSearch {
-    export const displayName: string;
+    export let displayName: string;
     export { DoubleBorder as doubleBorderComp };
 }
 import React from "react";

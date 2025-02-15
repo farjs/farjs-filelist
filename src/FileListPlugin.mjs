@@ -15,10 +15,10 @@ import PanelStackItem from "./stack/PanelStackItem.mjs";
 
 class FileListPlugin {
   /**
-   * @param {string[]} triggerKeys
+   * @param {readonly string[]} triggerKeys
    */
   constructor(triggerKeys) {
-    /** @readonly @type {string[]} */
+    /** @readonly @type {readonly string[]} */
     this.triggerKeys = triggerKeys;
   }
 
