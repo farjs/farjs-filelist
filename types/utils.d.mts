@@ -11,3 +11,8 @@ export function isEqualSets<T extends unknown>(a: Set<T>, b: Set<T>): boolean;
  * @returns {string}
  */
 export function stripPrefix(s: string, prefix: string): string;
+/**
+ * @param {number} size
+ * @returns {string}
+ */
+export function formatSize(size: number): string;

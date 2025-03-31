@@ -21,3 +21,15 @@ export function stripPrefix(s, prefix) {
     ? s.substring(prefix.length)
     : s;
 }
+
+/**
+ * @param {number} size
+ * @returns {string}
+ */
+export function formatSize(size) {
+  return sizeFormatter.format(size);
+}
+
+const sizeFormatter = new Intl.NumberFormat("en-EN", {
+  maximumFractionDigits: 0,
+});

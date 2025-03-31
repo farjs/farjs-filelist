@@ -18,6 +18,7 @@ import FileListItem from "./api/FileListItem.mjs";
 import FileListActions from "./FileListActions.mjs";
 import FileListState from "./FileListState.mjs";
 import FileList from "./FileList.mjs";
+import { formatSize } from "./utils.mjs";
 
 const h = React.createElement;
 
@@ -96,7 +97,7 @@ const FileListPanelView = (props) => {
               (res, item) => res + item.size,
               0
             );
-            const selectedSizeFmt = sizeFormatter.format(selectedSize);
+            const selectedSizeFmt = formatSize(selectedSize);
             const count = selectedItems.length;
             const files = count === 1 ? "file" : "files";
             return `${selectedSizeFmt} in ${count} ${files}`;
@@ -124,10 +125,10 @@ const FileListPanelView = (props) => {
           return "";
         }
         if (currItem.size >= 1000000000) {
-          const sizeFmt = sizeFormatter.format(currItem.size / 1000000000);
+          const sizeFmt = formatSize(currItem.size / 1000000000);
           return `~${sizeFmt} G`;
         }
-        return sizeFormatter.format(currItem.size);
+        return formatSize(currItem.size);
       })(),
       style,
       padding: 0,
@@ -169,7 +170,7 @@ const FileListPanelView = (props) => {
       text: (() => {
         const files = props.state.currDir.items.filter((_) => !_.isDir);
         const filesSize = files.reduce((res, f) => res + f.size, 0);
-        const filesSizeFmt = sizeFormatter.format(filesSize);
+        const filesSizeFmt = formatSize(filesSize);
         return `${filesSizeFmt} (${files.length})`;
       })(),
       style,
@@ -180,16 +181,12 @@ const FileListPanelView = (props) => {
           left: Math.trunc((width - 2) / 2) + 1,
           top: height - 1,
           width: Math.trunc((width - 2) / 2),
-          text: sizeFormatter.format(props.state.diskSpace),
+          text: formatSize(props.state.diskSpace),
           style,
         })
       : null
   );
 };
-
-const sizeFormatter = new Intl.NumberFormat("en-EN", {
-  maximumFractionDigits: 0,
-});
 
 FileListPanelView.displayName = "FileListPanelView";
 FileListPanelView.doubleBorderComp = DoubleBorder;
