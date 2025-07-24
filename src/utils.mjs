@@ -30,6 +30,25 @@ export function formatSize(size) {
   return sizeFormatter.format(size);
 }
 
+/**
+ * @template T
+ * @param {() => T} fn
+ * @return {() => T}
+ */
+export function lazyFn(fn) {
+  function lazyFunc() {
+    if (!lazyFunc._value) {
+      lazyFunc._value = fn();
+    }
+
+    return lazyFunc._value;
+  }
+  /** @type {T | undefined} */
+  lazyFunc._value = undefined;
+
+  return lazyFunc;
+}
+
 const sizeFormatter = new Intl.NumberFormat("en-EN", {
   maximumFractionDigits: 0,
 });

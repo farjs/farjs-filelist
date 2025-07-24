@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { isEqualSets, stripPrefix } from "../src/utils.mjs";
+import mockFunction from "mock-fn";
+import { isEqualSets, stripPrefix, lazyFn } from "../src/utils.mjs";
 
 const { describe, it } = await (async () => {
   // @ts-ignore
@@ -36,5 +37,18 @@ describe("utils.test.mjs", () => {
     assert.deepEqual(stripPrefix("2", "2"), "");
     assert.deepEqual(stripPrefix("21", "2"), "1");
     assert.deepEqual(stripPrefix("123", "12"), "3");
+  });
+
+  it("should call callback only once and return cached value when lazyFn", async () => {
+    //given
+    const initVal = "test";
+    const callback = mockFunction(() => initVal);
+    const lazyFunc = lazyFn(callback);
+
+    //when & then
+    assert.deepEqual(lazyFunc() === initVal, true);
+    assert.deepEqual(lazyFunc() === initVal, true);
+    assert.deepEqual(lazyFunc() === initVal, true);
+    assert.deepEqual(callback.times, 1);
   });
 });

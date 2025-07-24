@@ -16,3 +16,9 @@ export function stripPrefix(s: string, prefix: string): string;
  * @returns {string}
  */
 export function formatSize(size: number): string;
+/**
+ * @template T
+ * @param {() => T} fn
+ * @return {() => T}
+ */
+export function lazyFn<T>(fn: () => T): () => T;
