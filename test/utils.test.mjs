@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import mockFunction from "mock-fn";
-import { isEqualSets, stripPrefix, lazyFn } from "../src/utils.mjs";
+import {
+  isEqualSets,
+  stripPrefix,
+  lazyFn,
+  stripSuffix,
+} from "../src/utils.mjs";
 
 const { describe, it } = await (async () => {
   // @ts-ignore
@@ -37,6 +42,19 @@ describe("utils.test.mjs", () => {
     assert.deepEqual(stripPrefix("2", "2"), "");
     assert.deepEqual(stripPrefix("21", "2"), "1");
     assert.deepEqual(stripPrefix("123", "12"), "3");
+    assert.deepEqual(stripPrefix("123", "23"), "123");
+  });
+
+  it("should delete suffix from string when stripSuffix", async () => {
+    //when & then
+    assert.deepEqual(stripSuffix("", ""), "");
+    assert.deepEqual(stripSuffix("", "1"), "");
+    assert.deepEqual(stripSuffix("2", ""), "2");
+    assert.deepEqual(stripSuffix("2", "1"), "2");
+    assert.deepEqual(stripSuffix("2", "2"), "");
+    assert.deepEqual(stripSuffix("12", "2"), "1");
+    assert.deepEqual(stripSuffix("123", "23"), "1");
+    assert.deepEqual(stripSuffix("123", "12"), "123");
   });
 
   it("should call callback only once and return cached value when lazyFn", async () => {

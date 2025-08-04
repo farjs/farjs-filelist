@@ -23,6 +23,21 @@ export function stripPrefix(s, prefix) {
 }
 
 /**
+ * @param {string} s
+ * @param {string} suffix
+ * @returns {string}
+ */
+export function stripSuffix(s, suffix) {
+  return suffix.length > 0 && s.endsWith(suffix)
+    ? s.substring(0, s.length - suffix.length)
+    : s;
+}
+
+const sizeFormatter = new Intl.NumberFormat("en-EN", {
+  maximumFractionDigits: 0,
+});
+
+/**
  * @param {number} size
  * @returns {string}
  */
@@ -48,7 +63,3 @@ export function lazyFn(fn) {
 
   return lazyFunc;
 }
-
-const sizeFormatter = new Intl.NumberFormat("en-EN", {
-  maximumFractionDigits: 0,
-});
