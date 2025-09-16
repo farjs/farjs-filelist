@@ -129,7 +129,9 @@ describe("FileListPanel.test.mjs", () => {
     const viewProps = renderer.root.findByType(fileListPanelView).props;
 
     //when
-    viewProps.onKeypress(screen, "C-f12");
+    TestRenderer.act(() => {
+      viewProps.onKeypress(screen, "C-f12");
+    });
 
     //then
     const popupProps = renderer.root.findByType(sortModesPopup).props;
@@ -142,7 +144,9 @@ describe("FileListPanel.test.mjs", () => {
     });
 
     //when
-    popupProps.onClose();
+    TestRenderer.act(() => {
+      popupProps.onClose();
+    });
 
     //then
     assert.deepEqual(renderer.root.findAllByType(sortModesPopup).length, 0);
@@ -538,7 +542,9 @@ describe("FileListPanel.test.mjs", () => {
     const renderer = TestRenderer.create(
       withStackContext(h(FileListPanel, props))
     );
-    renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    TestRenderer.act(() => {
+      renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    });
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
       1
@@ -567,7 +573,9 @@ describe("FileListPanel.test.mjs", () => {
     const renderer = TestRenderer.create(
       withStackContext(h(FileListPanel, props), {}, true)
     );
-    renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    TestRenderer.act(() => {
+      renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    });
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
       1
@@ -594,11 +602,15 @@ describe("FileListPanel.test.mjs", () => {
     const renderer = TestRenderer.create(
       withStackContext(h(FileListPanel, props))
     );
-    renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    TestRenderer.act(() => {
+      renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    });
     const searchProps = renderer.root.findByType(fileListQuickSearch).props;
 
     //when
-    searchProps.onClose();
+    TestRenderer.act(() => {
+      searchProps.onClose();
+    });
 
     //then
     assert.deepEqual(
@@ -631,7 +643,9 @@ describe("FileListPanel.test.mjs", () => {
     const renderer = TestRenderer.create(
       withStackContext(h(FileListPanel, props))
     );
-    renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    TestRenderer.act(() => {
+      renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
+    });
 
     /** @type {(params: {key: string, index: number, text: string, dispatchAction: boolean}) => void} */
     function check({ key, index, text, dispatchAction }) {
@@ -646,7 +660,9 @@ describe("FileListPanel.test.mjs", () => {
       };
 
       //when
-      renderer.root.findByType(fileListPanelView).props.onKeypress(null, key);
+      TestRenderer.act(() => {
+        renderer.root.findByType(fileListPanelView).props.onKeypress(null, key);
+      });
 
       //then
       assert.deepEqual(
