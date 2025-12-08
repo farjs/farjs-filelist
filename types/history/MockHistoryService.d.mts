@@ -27,3 +27,4 @@ declare class MockHistoryService implements HistoryService {
     getOne(item: string): Promise<import("./HistoryProvider.mjs").History | undefined>;
     save(h: import("./HistoryProvider.mjs").History): Promise<void>;
 }
+//# sourceMappingURL=MockHistoryService.d.mts.map

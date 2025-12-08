@@ -31,3 +31,4 @@ declare namespace WithStacksProps {
      */
     function nonActive(stacks: WithStacksProps): WithStacksData;
 }
+//# sourceMappingURL=WithStacksProps.d.mts.map

@@ -36,3 +36,4 @@ declare class FileListPlugin {
     onFileTrigger(filePath: string, fileHeader: Uint8Array, onClose: () => void): Promise<PanelStackItem<FileListState> | undefined>;
 }
 import PanelStackItem from "./stack/PanelStackItem.mjs";
+//# sourceMappingURL=FileListPlugin.d.mts.map

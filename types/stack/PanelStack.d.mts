@@ -56,3 +56,4 @@ declare class PanelStack {
     params<T>(): T;
 }
 import PanelStackItem from "./PanelStackItem.mjs";
+//# sourceMappingURL=PanelStack.d.mts.map

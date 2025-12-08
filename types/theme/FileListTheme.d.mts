@@ -18,3 +18,4 @@ declare namespace FileListTheme {
     let defaultTheme: FileListTheme;
     let xterm256Theme: FileListTheme;
 }
+//# sourceMappingURL=FileListTheme.d.mts.map

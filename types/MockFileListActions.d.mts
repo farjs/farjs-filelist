@@ -26,3 +26,4 @@ declare class MockFileListActions extends FileListActions {
     constructor({ api, changeDir, updateDir, createDir, deleteItems, scanDirs, copyFile, }?: FileListActionsMocks);
 }
 import FileListActions from "./FileListActions.mjs";
+//# sourceMappingURL=MockFileListActions.d.mts.map

@@ -27,3 +27,4 @@ declare namespace FileListQuickSearch {
 }
 import React from "react";
 import DoubleBorder from "@farjs/ui/border/DoubleBorder.mjs";
+//# sourceMappingURL=FileListQuickSearch.d.mts.map

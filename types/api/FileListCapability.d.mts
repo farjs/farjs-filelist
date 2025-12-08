@@ -8,3 +8,4 @@ declare const FileListCapability: Readonly<{
     copyInplace: "copyInplace";
     moveInplace: "moveInplace";
 }>;
+//# sourceMappingURL=FileListCapability.d.mts.map

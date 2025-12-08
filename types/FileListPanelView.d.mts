@@ -38,3 +38,4 @@ import HorizontalLine from "@farjs/ui/border/HorizontalLine.mjs";
 import FileList from "./FileList.mjs";
 import TextLine from "@farjs/ui/TextLine.mjs";
 import SortIndicator from "./sort/SortIndicator.mjs";
+//# sourceMappingURL=FileListPanelView.d.mts.map

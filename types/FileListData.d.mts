@@ -27,3 +27,4 @@ export type FileListState = import("./FileListState.mjs").FileListState;
  */
 declare function FileListData(dispatch: Dispatch, actions: FileListActions, state: FileListState): FileListData;
 import FileListActions from "./FileListActions.mjs";
+//# sourceMappingURL=FileListData.d.mts.map

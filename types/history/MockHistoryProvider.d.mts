@@ -21,3 +21,4 @@ declare class MockHistoryProvider implements HistoryProvider {
     constructor({ get }?: HistoryProviderMocks);
     get(kind: import("./HistoryProvider.mjs").HistoryKind): Promise<import("./HistoryProvider.mjs").HistoryService>;
 }
+//# sourceMappingURL=MockHistoryProvider.d.mts.map

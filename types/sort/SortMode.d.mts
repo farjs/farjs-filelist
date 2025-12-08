@@ -9,3 +9,4 @@ declare const SortMode: Readonly<{
     CreationTime: "CreationTime";
     AccessTime: "AccessTime";
 }>;
+//# sourceMappingURL=SortMode.d.mts.map

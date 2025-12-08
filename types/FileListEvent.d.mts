@@ -4,3 +4,4 @@ declare const FileListEvent: Readonly<{
     onFileListCopy: "onFileListCopy";
     onFileListMove: "onFileListMove";
 }>;
+//# sourceMappingURL=FileListEvent.d.mts.map

@@ -22,3 +22,4 @@ export type FileListDir = {
  * @returns {FileListDir}
  */
 declare function FileListDir(path: string, isRoot: boolean, items: readonly FileListItem[]): FileListDir;
+//# sourceMappingURL=FileListDir.d.mts.map

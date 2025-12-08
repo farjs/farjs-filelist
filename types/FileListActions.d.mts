@@ -84,3 +84,4 @@ declare class FileListActions {
     copyFile(srcDir: string, srcItem: FileListItem, dstFileP: Promise<FileTarget | undefined>, onProgress: (pos: number) => Promise<boolean>): Promise<boolean>;
 }
 import FileListApi from "./api/FileListApi.mjs";
+//# sourceMappingURL=FileListActions.d.mts.map

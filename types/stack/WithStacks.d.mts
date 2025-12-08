@@ -10,3 +10,4 @@ declare namespace WithStacks {
     function useStacks(): WithStacksProps;
 }
 import React from "react";
+//# sourceMappingURL=WithStacks.d.mts.map

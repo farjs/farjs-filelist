@@ -9,3 +9,4 @@ export type WithStacksProps = import("./WithStacksProps.mjs").WithStacksProps;
  */
 declare function withStacksContext(element: React.ReactElement<any>, props: WithStacksProps): React.ReactElement<any>;
 import React from "react";
+//# sourceMappingURL=withStacksContext.d.mts.map

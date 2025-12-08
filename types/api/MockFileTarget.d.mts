@@ -33,3 +33,4 @@ declare class MockFileTarget implements FileTarget {
     close(): Promise<void>;
     delete(): Promise<void>;
 }
+//# sourceMappingURL=MockFileTarget.d.mts.map

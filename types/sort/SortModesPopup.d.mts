@@ -27,3 +27,4 @@ declare namespace SortModesPopup {
 }
 import React from "react";
 import MenuPopup from "@farjs/ui/menu/MenuPopup.mjs";
+//# sourceMappingURL=SortModesPopup.d.mts.map

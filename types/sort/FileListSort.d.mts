@@ -44,3 +44,4 @@ declare function nextSort(sort: FileListSort, nextMode: SortMode): FileListSort;
  * @returns {readonly FileListItem[]}
  */
 declare function sortItems(items: readonly FileListItem[], mode: SortMode): readonly FileListItem[];
+//# sourceMappingURL=FileListSort.d.mts.map

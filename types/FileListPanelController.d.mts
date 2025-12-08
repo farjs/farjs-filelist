@@ -10,3 +10,4 @@ declare function FileListPanelController(fileListPanelComp: React.FunctionCompon
     displayName: string;
 };
 import React from "react";
+//# sourceMappingURL=FileListPanelController.d.mts.map

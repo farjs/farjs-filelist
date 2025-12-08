@@ -20,3 +20,4 @@ declare namespace HistoryProvider {
     function useHistoryProvider(): HistoryProvider;
 }
 import React from "react";
+//# sourceMappingURL=HistoryProvider.d.mts.map

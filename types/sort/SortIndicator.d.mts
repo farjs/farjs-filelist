@@ -34,3 +34,4 @@ declare namespace SortIndicator {
     function _getIndicator(sort: FileListSort): string;
 }
 import React from "react";
+//# sourceMappingURL=SortIndicator.d.mts.map

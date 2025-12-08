@@ -36,3 +36,4 @@ declare namespace FileListColumn {
 }
 import React from "react";
 import TextLine from "@farjs/ui/TextLine.mjs";
+//# sourceMappingURL=FileListColumn.d.mts.map

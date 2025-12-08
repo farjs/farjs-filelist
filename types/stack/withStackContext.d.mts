@@ -11,3 +11,4 @@ export type WithStackProps = import("./WithStack.mjs").WithStackProps;
  */
 declare function withStackContext(element: React.ReactElement<any>, props?: Partial<WithStackProps>, isActive?: boolean): React.ReactElement<any>;
 import React from "react";
+//# sourceMappingURL=withStackContext.d.mts.map

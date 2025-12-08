@@ -82,3 +82,4 @@ declare class FileListApi {
      */
     getDriveRoot(path: string): Promise<string | undefined>;
 }
+//# sourceMappingURL=FileListApi.d.mts.map

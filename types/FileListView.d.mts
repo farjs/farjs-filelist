@@ -47,3 +47,4 @@ declare namespace FileListView {
 import React from "react";
 import VerticalLine from "@farjs/ui/border/VerticalLine.mjs";
 import FileListColumn from "./FileListColumn.mjs";
+//# sourceMappingURL=FileListView.d.mts.map

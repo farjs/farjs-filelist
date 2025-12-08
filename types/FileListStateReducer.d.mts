@@ -10,3 +10,4 @@ export type FileListState = import("./FileListState.mjs").FileListState;
  * @returns {FileListState}
  */
 declare function FileListStateReducer(state: FileListState, action: any): FileListState;
+//# sourceMappingURL=FileListStateReducer.d.mts.map

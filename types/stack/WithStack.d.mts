@@ -31,3 +31,4 @@ declare namespace WithStack {
 import PanelStack from "./PanelStack.mjs";
 import React from "react";
 import WithSize from "@farjs/ui/WithSize.mjs";
+//# sourceMappingURL=WithStack.d.mts.map

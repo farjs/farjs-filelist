@@ -28,3 +28,4 @@ export function formatSize(size: number): string;
  * @return {() => T}
  */
 export function lazyFn<T>(fn: () => T): () => T;
+//# sourceMappingURL=utils.d.mts.map

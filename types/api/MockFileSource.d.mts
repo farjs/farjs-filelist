@@ -27,3 +27,4 @@ declare class MockFileSource implements FileSource {
     readNextBytes(buff: Uint8Array): Promise<number>;
     close(): Promise<void>;
 }
+//# sourceMappingURL=MockFileSource.d.mts.map

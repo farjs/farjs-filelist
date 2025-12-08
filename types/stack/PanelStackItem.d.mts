@@ -37,3 +37,4 @@ declare class PanelStackItem<T> {
     getData(): FileListData | undefined;
 }
 import FileListActions from "../FileListActions.mjs";
+//# sourceMappingURL=PanelStackItem.d.mts.map

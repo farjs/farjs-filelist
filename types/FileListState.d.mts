@@ -29,3 +29,4 @@ declare namespace FileListState {
     function selectedItems(s: FileListState): FileListItem[];
     function isFileListState(s: any): boolean;
 }
+//# sourceMappingURL=FileListState.d.mts.map

@@ -28,3 +28,4 @@ declare class MockFileListApi extends FileListApi {
     constructor({ isLocal, capabilities, readDir, delete: deleteMock, mkDirs, readFile, writeFile, getDriveRoot, }?: FileListApiMocks);
 }
 import FileListApi from "./FileListApi.mjs";
+//# sourceMappingURL=MockFileListApi.d.mts.map

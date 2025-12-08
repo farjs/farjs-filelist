@@ -17,3 +17,4 @@ export type BlessedElement = import("@farjs/blessed").Widgets.BlessedElement;
  */
 declare function WithStacksData(stack: PanelStack, input?: BlessedElement): WithStacksData;
 import PanelStack from "./PanelStack.mjs";
+//# sourceMappingURL=WithStacksData.d.mts.map

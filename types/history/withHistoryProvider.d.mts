@@ -9,3 +9,4 @@ export type HistoryProvider = import("./HistoryProvider.mjs").HistoryProvider;
  */
 declare function withHistoryProvider(element: React.ReactElement<any>, historyProvider: HistoryProvider): React.ReactElement<any>;
 import React from "react";
+//# sourceMappingURL=withHistoryProvider.d.mts.map

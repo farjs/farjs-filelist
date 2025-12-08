@@ -1,0 +1,1 @@
+{"version":3,"file":"withStackContext.d.mts","sourceRoot":"","sources":["../../src/stack/withStackContext.mjs"],"names":[],"mappings":";6BACa,OAAO,gBAAgB,EAAE,OAAO,CAAC,cAAc;6BAC/C,OAAO,iBAAiB,EAAE,cAAc;AAWrD;;;;;;;GAOG;AACH,2CALW,KAAK,CAAC,YAAY,CAAC,GAAG,CAAC,UACvB,OAAO,CAAC,cAAc,CAAC,aACvB,OAAO,GACL,KAAK,CAAC,YAAY,CAAC,GAAG,CAAC,CAqBnC;kBApCiB,OAAO"}
