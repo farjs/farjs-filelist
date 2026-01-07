@@ -28,4 +28,23 @@ export function formatSize(size: number): string;
  * @return {() => T}
  */
 export function lazyFn<T>(fn: () => T): () => T;
+export function voidFn(): void;
+/**
+ * @template T
+ * @typedef {{
+ *  readonly p: Promise<T>;
+ *  readonly resolve: (value: T | PromiseLike<T>) => void;
+ *  readonly reject: (reason?: any) => void;
+ * }} PromiseWithResolvers
+ */
+/**
+ * @template T
+ * @returns {PromiseWithResolvers<T>}
+ */
+export function newPromiseWithResolvers<T>(): PromiseWithResolvers<T>;
+export type PromiseWithResolvers<T> = {
+    readonly p: Promise<T>;
+    readonly resolve: (value: T | PromiseLike<T>) => void;
+    readonly reject: (reason?: any) => void;
+};
 //# sourceMappingURL=utils.d.mts.map

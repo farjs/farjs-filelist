@@ -63,3 +63,34 @@ export function lazyFn(fn) {
 
   return lazyFunc;
 }
+
+export function voidFn() {}
+
+/**
+ * @template T
+ * @typedef {{
+ *  readonly p: Promise<T>;
+ *  readonly resolve: (value: T | PromiseLike<T>) => void;
+ *  readonly reject: (reason?: any) => void;
+ * }} PromiseWithResolvers
+ */
+
+/**
+ * @template T
+ * @returns {PromiseWithResolvers<T>}
+ */
+export function newPromiseWithResolvers() {
+  /** @type {(value: T | PromiseLike<T>) => void} */
+  let resolve = voidFn;
+
+  /** @type {(reason?: any) => void} */
+  let reject = voidFn;
+
+  /** @type {Promise<T>} */
+  const p = new Promise((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+
+  return { p, resolve, reject };
+}
