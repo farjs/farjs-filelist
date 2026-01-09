@@ -139,7 +139,8 @@ describe("StreamReader.test.mjs", () => {
     const expectedContent = `some long text
 ,
 
-more text at the end`;
+more text at the end
+`;
     const reader = new StreamReader(
       Readable.from(Buffer.from(expectedContent))
     );
@@ -149,10 +150,55 @@ more text at the end`;
     await reader.readAllLines((line) => {
       deepEqual(line.includes("\n"), false);
 
-      if (result != "") {
+      if (result !== "") {
         result = result + "\n";
       }
       result = result + line;
+    });
+
+    //then
+    deepEqual(result, expectedContent);
+  });
+
+  it("should read single line if empty when readAllLines", async () => {
+    //given
+    const expectedContent = "";
+    const reader = new StreamReader(
+      Readable.from(Buffer.from(expectedContent))
+    );
+    let result = "";
+
+    //when
+    await reader.readAllLines((line) => {
+      deepEqual(line.includes("\n"), false);
+
+      if (result !== "") {
+        result = result + "\n";
+      }
+      result = result + line;
+    });
+
+    //then
+    deepEqual(result, expectedContent);
+  });
+
+  it("should read two lines when readAllLines", async () => {
+    //given
+    const expectedContent = "\n";
+    const reader = new StreamReader(
+      Readable.from(Buffer.from(expectedContent))
+    );
+    /** @type {string | undefined} */
+    let result = undefined;
+
+    //when
+    await reader.readAllLines((line) => {
+      deepEqual(line.includes("\n"), false);
+
+      if (result !== undefined) {
+        result = result + "\n";
+      }
+      result = (result ?? "") + line;
     });
 
     //then

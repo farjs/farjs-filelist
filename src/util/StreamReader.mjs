@@ -79,11 +79,9 @@ class StreamReader {
 
         chunks.push(buf.subarray(0, newLineIndex));
         onNextLine(Buffer.concat(chunks).toString());
-
         chunks = [];
-        if (newLineIndex + 1 < buf.length) {
-          buf = buf.subarray(newLineIndex + 1, buf.length);
-        } else return;
+
+        buf = buf.subarray(newLineIndex + 1, buf.length);
       }
     }
 
@@ -93,8 +91,9 @@ class StreamReader {
     function loop() {
       return self.readNextBytes(16).then((buf) => {
         if (buf === undefined) {
-          if (chunks.length != 0) {
+          if (chunks.length > 0) {
             onNextLine(Buffer.concat(chunks).toString());
+            chunks = [];
           }
           return undefined;
         }
