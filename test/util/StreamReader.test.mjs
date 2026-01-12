@@ -136,6 +136,7 @@ describe("StreamReader.test.mjs", () => {
 
   it("should read all lines when readAllLines", async () => {
     //given
+    StreamReader.readBufferSize = 16;
     const expectedContent = `some long text
 ,
 
@@ -162,6 +163,7 @@ more text at the end
 
   it("should read single line if empty when readAllLines", async () => {
     //given
+    StreamReader.readBufferSize = 16;
     const expectedContent = "";
     const reader = new StreamReader(
       Readable.from(Buffer.from(expectedContent))
@@ -184,6 +186,7 @@ more text at the end
 
   it("should read two lines when readAllLines", async () => {
     //given
+    StreamReader.readBufferSize = 16;
     const expectedContent = "\n";
     const reader = new StreamReader(
       Readable.from(Buffer.from(expectedContent))

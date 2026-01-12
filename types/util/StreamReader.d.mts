@@ -19,5 +19,8 @@ declare class StreamReader {
      */
     readAllLines(onNextLine: (line: string) => void): Promise<void>;
 }
+declare namespace StreamReader {
+    let readBufferSize: number;
+}
 import type { Readable } from "stream";
 //# sourceMappingURL=StreamReader.d.mts.map

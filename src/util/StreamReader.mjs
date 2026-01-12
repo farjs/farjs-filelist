@@ -89,7 +89,7 @@ class StreamReader {
 
     /** @type {() => Promise<void>} */
     function loop() {
-      return self.readNextBytes(16).then((buf) => {
+      return self.readNextBytes(StreamReader.readBufferSize).then((buf) => {
         if (buf === undefined) {
           if (chunks.length > 0) {
             onNextLine(Buffer.concat(chunks).toString());
@@ -106,5 +106,7 @@ class StreamReader {
     return loop();
   }
 }
+
+StreamReader.readBufferSize = 8192;
 
 export default StreamReader;
