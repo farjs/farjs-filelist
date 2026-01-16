@@ -35,3 +35,4 @@ await import("./stack/WithStacks.test.mjs");
 await import("./theme/FileListTheme.test.mjs");
 
 await import("./util/StreamReader.test.mjs");
+await import("./util/SubProcess.test.mjs");

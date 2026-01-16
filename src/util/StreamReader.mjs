@@ -12,7 +12,7 @@ class StreamReader {
   constructor(readable) {
     const self = this;
 
-    /** @private @readonly @type {Readable} */
+    /** @readonly @type {Readable} */
     this.readable = readable;
 
     /** @private @type {PromiseWithResolvers<boolean>} */

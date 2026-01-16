@@ -4,8 +4,8 @@ declare class StreamReader {
      * @param {Readable} readable
      */
     constructor(readable: Readable);
-    /** @private @readonly @type {Readable} */
-    private readonly readable;
+    /** @readonly @type {Readable} */
+    readonly readable: Readable;
     /** @private @type {PromiseWithResolvers<boolean>} */
     private ready;
     /**

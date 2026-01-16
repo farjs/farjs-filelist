@@ -1,9 +1,9 @@
 import path from "path";
 import fs from "fs";
 import os from "os";
+import { Readable } from "stream";
 import { deepEqual } from "node:assert/strict";
 import StreamReader from "../../src/util/StreamReader.mjs";
-import { Readable } from "node:stream";
 
 const { describe, it } = await (async () => {
   // @ts-ignore
@@ -132,6 +132,26 @@ describe("StreamReader.test.mjs", () => {
 
     fs.rmdirSync(tmpDir);
     deepEqual(fs.existsSync(tmpDir), false);
+  });
+
+  it("should handle errored stream when readNextBytes", async () => {
+    //given
+    StreamReader.readBufferSize = 16;
+    const error = Error("test stream error");
+    const readable = Readable.from(Buffer.from(""));
+    readable.destroy(error);
+    const reader = new StreamReader(readable);
+
+    //when
+    let resError = null;
+    try {
+      await reader.readNextBytes(4);
+    } catch (error) {
+      resError = error;
+    }
+
+    //then
+    deepEqual(resError === error, true);
   });
 
   it("should read all lines when readAllLines", async () => {
