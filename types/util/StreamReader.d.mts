@@ -6,8 +6,10 @@ declare class StreamReader {
     constructor(readable: Readable);
     /** @readonly @type {Readable} */
     readonly readable: Readable;
-    /** @private @type {PromiseWithResolvers<boolean>} */
+    /** @private @type {PromiseWithResolvers<void>} */
     private ready;
+    /** @private @type {boolean} */
+    private isEnded;
     /**
      * @param {number} size
      * @returns {Promise<Buffer | undefined>}

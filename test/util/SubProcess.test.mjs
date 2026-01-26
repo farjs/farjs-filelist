@@ -66,6 +66,8 @@ describe("SubProcess.test.mjs", () => {
 
     //when & then
     const result = await SubProcess.wrap(child);
+    deepEqual(result.child === child, true);
+    deepEqual(result.stdout.readable === stdoutStream, true);
     deepEqual(once.times, 2);
     deepEqual(onceArgs.length, 2);
     deepEqual(onceArgs[0][0], "exit");
@@ -78,9 +80,7 @@ describe("SubProcess.test.mjs", () => {
 
     //when & then
     exitCallback(0);
-    deepEqual(result.child === child, true);
-    deepEqual(result.stdout.readable === stdoutStream, true);
-    await result.exitP;
+    deepEqual(await result.exitP, undefined);
   });
 
   it("should return rejected Promise if error when wrap", async () => {
@@ -119,7 +119,7 @@ describe("SubProcess.test.mjs", () => {
     exitCallback(0);
   });
 
-  it("should return rejected exit Promise with stderr when wrap", async () => {
+  it("should return resolved exit Promise with stderr when wrap", async () => {
     //given
     const expectedOutput = "test content";
     const expectedError = "test error";
@@ -138,6 +138,8 @@ describe("SubProcess.test.mjs", () => {
 
     //when & then
     const result = await SubProcess.wrap(child);
+    deepEqual(result.child === child, true);
+    deepEqual(result.stdout.readable === stdoutStream, true);
     deepEqual(once.times, 2);
     deepEqual(onceArgs.length, 2);
     deepEqual(onceArgs[0][0], "exit");
@@ -149,21 +151,14 @@ describe("SubProcess.test.mjs", () => {
     deepEqual(output, expectedOutput);
 
     //when & then
-    exitCallback(1);
-    deepEqual(result.child === child, true);
-    deepEqual(result.stdout.readable === stdoutStream, true);
-
-    //when & then
-    let resError = null;
-    try {
-      await result.exitP;
-    } catch (error) {
-      resError = error;
-    }
-    deepEqual(resError.message, expectedError);
+    const exitCode = 1;
+    exitCallback(exitCode);
+    const resError = await result.exitP;
+    deepEqual(resError?.exitCode, exitCode);
+    deepEqual(resError?.message, expectedError);
   });
 
-  it("should return rejected exit Promise with generic error when wrap", async () => {
+  it("should return resolved exit Promise with generic error when wrap", async () => {
     //given
     const expectedOutput = "test content";
     const stdoutStream = Readable.from(Buffer.from(expectedOutput));
@@ -182,6 +177,8 @@ describe("SubProcess.test.mjs", () => {
 
     //when & then
     const result = await SubProcess.wrap(child);
+    deepEqual(result.child === child, true);
+    deepEqual(result.stdout.readable === stdoutStream, true);
     deepEqual(once.times, 2);
     deepEqual(onceArgs.length, 2);
     deepEqual(onceArgs[0][0], "exit");
@@ -193,26 +190,19 @@ describe("SubProcess.test.mjs", () => {
     deepEqual(output, expectedOutput);
 
     //when & then
-    exitCallback(1);
-    deepEqual(result.child === child, true);
-    deepEqual(result.stdout.readable === stdoutStream, true);
-
-    //when & then
-    let resError = null;
-    try {
-      await result.exitP;
-    } catch (error) {
-      resError = error;
-    }
+    const exitCode = 1;
+    exitCallback(exitCode);
+    const resError = await result.exitP;
+    deepEqual(resError?.exitCode, exitCode);
     deepEqual(
-      resError.message,
-      `sub-process exited with code=1
+      resError?.message,
+      `sub-process exited with code=${exitCode}
 command:
 app arg1 arg2`
     );
   });
 
-  it("should return rejected exit Promise with recovered error when wrap", async () => {
+  it("should return resolved exit Promise with recovered error when wrap", async () => {
     //given
     const expectedOutput = "test content";
     const stdoutStream = Readable.from(Buffer.from(expectedOutput));
@@ -231,6 +221,8 @@ app arg1 arg2`
 
     //when & then
     const result = await SubProcess.wrap(child);
+    deepEqual(result.child === child, true);
+    deepEqual(result.stdout.readable === stdoutStream, true);
     deepEqual(once.times, 2);
     deepEqual(onceArgs.length, 2);
     deepEqual(onceArgs[0][0], "exit");
@@ -245,20 +237,13 @@ app arg1 arg2`
     stderrStream.destroy(Error("test stream error"));
 
     //when & then
-    exitCallback(1);
-    deepEqual(result.child === child, true);
-    deepEqual(result.stdout.readable === stdoutStream, true);
-
-    //when & then
-    let resError = null;
-    try {
-      await result.exitP;
-    } catch (error) {
-      resError = error;
-    }
+    const exitCode = 2;
+    exitCallback(exitCode);
+    const resError = await result.exitP;
+    deepEqual(resError?.exitCode, exitCode);
     deepEqual(
-      resError.message,
-      `sub-process exited with code=1
+      resError?.message,
+      `sub-process exited with code=${exitCode}
 command:
 app arg1 arg2`
     );

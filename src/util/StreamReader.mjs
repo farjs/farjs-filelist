@@ -15,14 +15,18 @@ class StreamReader {
     /** @readonly @type {Readable} */
     this.readable = readable;
 
-    /** @private @type {PromiseWithResolvers<boolean>} */
+    /** @private @type {PromiseWithResolvers<void>} */
     this.ready = newPromiseWithResolvers();
 
-    const readableListener = () => self.ready.resolve(false);
+    /** @private @type {boolean} */
+    this.isEnded = false;
+
+    const readableListener = () => self.ready.resolve();
     /** @type {(error: Error) => void} */
     const errorListener = (error) => self.ready.reject(error);
     const endListener = () => {
-      self.ready.resolve(true);
+      self.isEnded = true;
+      self.ready.resolve();
       readable.removeListener("readable", readableListener);
       readable.removeListener("error", errorListener);
     };
@@ -41,8 +45,8 @@ class StreamReader {
 
     /** @type {() => Promise<Buffer | undefined>} */
     function loop() {
-      return self.ready.p.then((isEnd) => {
-        if (isEnd) {
+      return self.ready.p.then(() => {
+        if (self.isEnded) {
           return undefined;
         }
 

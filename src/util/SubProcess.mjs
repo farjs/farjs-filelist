@@ -5,11 +5,24 @@
 import { newPromiseWithResolvers } from "../utils.mjs";
 import StreamReader from "./StreamReader.mjs";
 
+export class SubProcessError extends Error {
+  /**
+   * @param {number} exitCode
+   * @param {string} [message]
+   */
+  constructor(exitCode, message) {
+    super(message);
+
+    /** @readonly @type {number} */
+    this.exitCode = exitCode;
+  }
+}
+
 /**
  * @typedef {{
  *  readonly child: ChildProcess;
  *  readonly stdout: StreamReader;
- *  readonly exitP: Promise<void>;
+ *  readonly exitP: Promise<SubProcessError | undefined>;
  * }} SubProcess
  */
 
@@ -25,11 +38,11 @@ const SubProcess = {
       return Promise.reject(Error("Child process has no output streams"));
     }
 
-    /** @type {PromiseWithResolvers<void>} */
+    /** @type {PromiseWithResolvers<number | undefined>} */
     const exitPromise = newPromiseWithResolvers();
     child.once("exit", (code) => {
-      if (code === 0) exitPromise.resolve();
-      else exitPromise.reject(code);
+      if (code === 0) exitPromise.resolve(undefined);
+      else exitPromise.resolve(/** @type {any} */ (code));
     });
 
     let errored = false;
@@ -45,7 +58,11 @@ const SubProcess = {
         spawnPromise.resolve({
           child,
           stdout: new StreamReader(childStdout),
-          exitP: exitPromise.p.catch(async (code) => {
+          exitP: exitPromise.p.then(async (code) => {
+            if (code === undefined) {
+              return;
+            }
+
             const stderr = new StreamReader(childStderr);
             let content;
             try {
@@ -54,7 +71,9 @@ const SubProcess = {
               content = undefined;
             }
             stderr.readable.destroy();
-            throw Error(
+
+            return new SubProcessError(
+              code,
               content !== undefined
                 ? content.toString()
                 : `sub-process exited with code=${code}

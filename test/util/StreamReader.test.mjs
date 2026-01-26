@@ -57,7 +57,7 @@ describe("StreamReader.test.mjs", () => {
     deepEqual(fs.existsSync(tmpDir), false);
   });
 
-  it("should end stream without error when readNextBytes", async () => {
+  it("should end stream in the middle when readNextBytes", async () => {
     //given
     const tmpDir = fs.mkdtempSync(
       path.join(os.tmpdir(), "farjs-filelist-test-")
@@ -65,7 +65,7 @@ describe("StreamReader.test.mjs", () => {
     const file = path.join(tmpDir, "example.txt");
     fs.writeFileSync(file, "hello, World!!!");
     const readable = fs.createReadStream(file, {
-      highWaterMark: 5,
+      highWaterMark: 6,
     });
     const reader = new StreamReader(readable);
 
@@ -96,26 +96,59 @@ describe("StreamReader.test.mjs", () => {
     deepEqual(fs.existsSync(tmpDir), false);
   });
 
-  it("should read data fully when readNextBytes", async () => {
+  it("should end stream at the end when readNextBytes", async () => {
     //given
     const tmpDir = fs.mkdtempSync(
       path.join(os.tmpdir(), "farjs-filelist-test-")
     );
     const file = path.join(tmpDir, "example.txt");
-    fs.writeFileSync(file, "hello, World!!!");
+    fs.writeFileSync(file, "hello");
+    const readable = fs.createReadStream(file, {
+      highWaterMark: 7,
+    });
+    const reader = new StreamReader(readable);
+
+    //when & then
+    deepEqual((await reader.readNextBytes(5))?.toString(), "hello");
+
+    //when
+    readable.destroy();
+
+    //then
+    deepEqual(await reader.readNextBytes(5), undefined);
+    deepEqual(await reader.readNextBytes(5), undefined);
+
+    //cleanup
+    fs.unlinkSync(file);
+    deepEqual(fs.existsSync(file), false);
+
+    fs.rmdirSync(tmpDir);
+    deepEqual(fs.existsSync(tmpDir), false);
+  });
+
+  it("should read data fully when readNextBytes(len > 2 * bufSize)", async () => {
+    //given
+    const tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), "farjs-filelist-test-")
+    );
+    const file = path.join(tmpDir, "example.txt");
+    const expectedContent = "hello, World!!!";
+    fs.writeFileSync(file, expectedContent);
     const readable = fs.createReadStream(file, {
       highWaterMark: 2,
     });
     const reader = new StreamReader(readable);
+    const bufSize = 4;
+    deepEqual(expectedContent.length > 2 * bufSize, true);
 
     /** @type {(result: string) => Promise<string>} */
     async function loop(result) {
-      const content = await reader.readNextBytes(4);
+      const content = await reader.readNextBytes(bufSize);
       if (content === undefined) {
         return result;
       }
 
-      deepEqual(content.length <= 4, true);
+      deepEqual(content.length <= bufSize, true);
       return loop(result + content.toString());
     }
 
@@ -124,7 +157,115 @@ describe("StreamReader.test.mjs", () => {
 
     //then
     const result = await resultP;
-    deepEqual(result, "hello, World!!!");
+    deepEqual(result, expectedContent);
+
+    //cleanup
+    fs.unlinkSync(file);
+    deepEqual(fs.existsSync(file), false);
+
+    fs.rmdirSync(tmpDir);
+    deepEqual(fs.existsSync(tmpDir), false);
+  });
+
+  it("should read data fully when readNextBytes(len > bufSize)", async () => {
+    //given
+    const tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), "farjs-filelist-test-")
+    );
+    const file = path.join(tmpDir, "example.txt");
+    const expectedContent = "hello";
+    fs.writeFileSync(file, expectedContent);
+    const readable = fs.createReadStream(file, {
+      highWaterMark: 2,
+    });
+    const reader = new StreamReader(readable);
+    const bufSize = 4;
+    deepEqual(
+      expectedContent.length > bufSize && expectedContent.length < 2 * bufSize,
+      true
+    );
+
+    /** @type {(result: string) => Promise<string>} */
+    async function loop(result) {
+      const content = await reader.readNextBytes(bufSize);
+      if (content === undefined) {
+        return result;
+      }
+
+      deepEqual(content.length <= bufSize, true);
+      return loop(result + content.toString());
+    }
+
+    //when
+    const resultP = loop("");
+
+    //then
+    const result = await resultP;
+    deepEqual(result, expectedContent);
+
+    //cleanup
+    fs.unlinkSync(file);
+    deepEqual(fs.existsSync(file), false);
+
+    fs.rmdirSync(tmpDir);
+    deepEqual(fs.existsSync(tmpDir), false);
+  });
+
+  it("should read data fully when readNextBytes(len = bufSize)", async () => {
+    //given
+    const tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), "farjs-filelist-test-")
+    );
+    const file = path.join(tmpDir, "example.txt");
+    const expectedContent = "hello";
+    fs.writeFileSync(file, expectedContent);
+    const readable = fs.createReadStream(file, {
+      highWaterMark: 2,
+    });
+    const reader = new StreamReader(readable);
+    const bufSize = 5;
+    deepEqual(expectedContent.length === bufSize, true);
+
+    //when & then
+    deepEqual(
+      (await reader.readNextBytes(bufSize))?.toString(),
+      expectedContent
+    );
+    deepEqual(await reader.readNextBytes(bufSize), undefined);
+    deepEqual(await reader.readNextBytes(bufSize), undefined);
+    deepEqual(await reader.readNextBytes(bufSize), undefined);
+
+    //cleanup
+    fs.unlinkSync(file);
+    deepEqual(fs.existsSync(file), false);
+
+    fs.rmdirSync(tmpDir);
+    deepEqual(fs.existsSync(tmpDir), false);
+  });
+
+  it("should read data fully when readNextBytes(len < bufSize)", async () => {
+    //given
+    const tmpDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), "farjs-filelist-test-")
+    );
+    const file = path.join(tmpDir, "example.txt");
+    const expectedContent = "hello";
+    fs.writeFileSync(file, expectedContent);
+    const readable = fs.createReadStream(file, {
+      highWaterMark: 2,
+    });
+    const reader = new StreamReader(readable);
+    const bufSize = 10;
+    deepEqual(expectedContent.length < bufSize, true);
+
+    //when & then
+    deepEqual(
+      (await reader.readNextBytes(bufSize))?.toString(),
+      expectedContent
+    );
+    deepEqual(await reader.readNextBytes(bufSize), undefined);
+    deepEqual(await reader.readNextBytes(bufSize), undefined);
+    deepEqual(await reader.readNextBytes(bufSize), undefined);
 
     //cleanup
     fs.unlinkSync(file);
