@@ -16,7 +16,7 @@ const { describe, it } = await (async () => {
 
 const stacksProps = WithStacksProps(
   WithStacksData(new PanelStack(true, [], mockFunction())),
-  WithStacksData(new PanelStack(false, [], mockFunction()))
+  WithStacksData(new PanelStack(false, [], mockFunction())),
 );
 
 describe("FileListPlugin.test.mjs", () => {
@@ -51,7 +51,7 @@ describe("FileListPlugin.test.mjs", () => {
     const result = await plugin.onFileTrigger(
       "/test/path",
       new Uint8Array(),
-      mockFunction
+      mockFunction,
     );
 
     //then

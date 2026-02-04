@@ -53,7 +53,7 @@ const FileListQuickSearch = (props) => {
     const el = elementRef.current;
     el.screen.program.omove(
       /** @type {number} */ (el.aleft) + text.length,
-      /** @type {number} */ (el.atop)
+      /** @type {number} */ (el.atop),
     );
   }
 
@@ -97,8 +97,8 @@ const FileListQuickSearch = (props) => {
         left: 1,
         style: textStyle,
         content: text,
-      })
-    )
+      }),
+    ),
   );
 };
 

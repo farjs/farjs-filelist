@@ -36,14 +36,14 @@ const FileListPanel = (props) => {
 
   const stackProps = WithStack.useStack();
   const [maybeQuickSearch, setMaybeQuickSearch] = useState(
-    /** @type {string | null} */ (null)
+    /** @type {string | null} */ (null),
   );
   const [showSortModes, setShowSortModes] = useState(false);
 
   /** @type {(text: string) => void} */
   function quickSearch(text) {
     const index = props.state.currDir.items.findIndex((_) =>
-      _.name.startsWith(text)
+      _.name.startsWith(text),
     );
     if (index >= 0) {
       /** @type {FileListAction} */
@@ -100,7 +100,7 @@ const FileListPanel = (props) => {
         }
       } else if (key === "C-r") {
         props.dispatch(
-          props.actions.updateDir(props.dispatch, props.state.currDir.path)
+          props.actions.updateDir(props.dispatch, props.state.currDir.path),
         );
       } else if (
         key === "enter" ||
@@ -128,8 +128,8 @@ const FileListPanel = (props) => {
             props.actions.changeDir(
               props.dispatch,
               props.state.currDir.path,
-              targetDir.name
-            )
+              targetDir.name,
+            ),
           );
         }
       } else if (key === "C-s") {
@@ -185,7 +185,7 @@ const FileListPanel = (props) => {
             setShowSortModes(false);
           },
         })
-      : null
+      : null,
   );
 };
 

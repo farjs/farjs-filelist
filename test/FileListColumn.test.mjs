@@ -58,7 +58,7 @@ describe("FileListColumn.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withThemeContext(h(FileListColumn, props), currTheme)
+      withThemeContext(h(FileListColumn, props), currTheme),
     ).root;
 
     //then
@@ -75,7 +75,7 @@ describe("FileListColumn.test.mjs", () => {
         "{bold}{#5ce-fg}{#008-bg} fileй 6      {/}{bold}{#5ce-fg}{#008-bg}│{/}",
         "{#a05-fg}{#008-bg}file.zip      {/}{bold}{#5ce-fg}{#008-bg}│{/}",
       ].join("\n"),
-      currTheme
+      currTheme,
     );
   });
 
@@ -93,7 +93,7 @@ describe("FileListColumn.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withThemeContext(h(FileListColumn, props))
+      withThemeContext(h(FileListColumn, props)),
     ).root;
 
     //then
@@ -111,7 +111,7 @@ function assertFileListColumn(
   result,
   props,
   expectedContent,
-  currTheme = FileListTheme.defaultTheme
+  currTheme = FileListTheme.defaultTheme,
 ) {
   assert.deepEqual(FileListColumn.displayName, "FileListColumn");
   const theme = currTheme.fileList;
@@ -146,7 +146,7 @@ function assertFileListColumn(
               content: expectedContent,
             })
           : null,
-      ].filter((_) => _)
-    )
+      ].filter((_) => _),
+    ),
   );
 }

@@ -46,7 +46,7 @@ describe("FileListState.test.mjs", () => {
     assert.deepEqual(currentItem({ ...s, offset: 1, currDir }), item2);
     assert.deepEqual(
       currentItem({ ...s, offset: 1, index: 1, currDir }),
-      undefined
+      undefined,
     );
   });
 
@@ -60,11 +60,11 @@ describe("FileListState.test.mjs", () => {
     //when & then
     assert.deepEqual(
       currentItem({ ...s, currDir }, (_) => true),
-      item1
+      item1,
     );
     assert.deepEqual(
       currentItem({ ...s, currDir }, (_) => false),
-      undefined
+      undefined,
     );
   });
 
@@ -80,15 +80,15 @@ describe("FileListState.test.mjs", () => {
     assert.deepEqual(selectedItems({ ...s, currDir }), []);
     assert.deepEqual(
       selectedItems({ ...s, currDir, selectedNames: new Set(["file 123"]) }),
-      []
+      [],
     );
     assert.deepEqual(
       selectedItems({ ...s, currDir, selectedNames: new Set(["dir 1"]) }),
-      [item1]
+      [item1],
     );
     assert.deepEqual(
       selectedItems({ ...s, currDir, selectedNames: new Set(["file 1"]) }),
-      [item2]
+      [item2],
     );
     assert.deepEqual(
       selectedItems({
@@ -96,7 +96,7 @@ describe("FileListState.test.mjs", () => {
         currDir,
         selectedNames: new Set(["file 1", "dir 1"]),
       }),
-      [item1, item2]
+      [item1, item2],
     );
   });
 
@@ -125,22 +125,22 @@ describe("FileListState.test.mjs", () => {
     assert.deepEqual(isFileListState({ ...s, currDir: null }), false);
     assert.deepEqual(
       isFileListState({ ...s, currDir: { ...currDir, items: new Set() } }),
-      false
+      false,
     );
     assert.deepEqual(
       isFileListState({ ...s, currDir: { ...currDir, isRoot: "" } }),
-      false
+      false,
     );
     assert.deepEqual(
       isFileListState({ ...s, currDir: { ...currDir, path: true } }),
-      false
+      false,
     );
     assert.deepEqual(isFileListState({ ...s, selectedNames: [] }), false);
     assert.deepEqual(isFileListState({ ...s, selectedNames: "" }), false);
     assert.deepEqual(isFileListState({ ...s, selectedNames: {} }), false);
     assert.deepEqual(
       isFileListState({ ...s, selectedNames: undefined }),
-      false
+      false,
     );
     assert.deepEqual(isFileListState({ ...s, selectedNames: null }), false);
     assert.deepEqual(isFileListState({ ...s, sort: "" }), false);
@@ -149,11 +149,11 @@ describe("FileListState.test.mjs", () => {
     assert.deepEqual(isFileListState({ ...s, sort: null }), false);
     assert.deepEqual(
       isFileListState({ ...s, sort: { ...s.sort, mode: 123 } }),
-      false
+      false,
     );
     assert.deepEqual(
       isFileListState({ ...s, sort: { ...s.sort, asc: "false" } }),
-      false
+      false,
     );
   });
 });

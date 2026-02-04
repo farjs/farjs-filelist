@@ -112,7 +112,7 @@ describe("FileListQuickSearch.test.mjs", () => {
       withThemeContext(h(FileListQuickSearch, props)),
       {
         createNodeMock: (el) => (el.type === "text" ? textEl : null),
-      }
+      },
     );
     assert.deepEqual(omove.times, 1);
     assert.deepEqual(omoveArgs, [5, 3]);
@@ -120,7 +120,7 @@ describe("FileListQuickSearch.test.mjs", () => {
     //when
     TestRenderer.act(() => {
       renderer.update(
-        withThemeContext(h(FileListQuickSearch, { ...props, text: "text2" }))
+        withThemeContext(h(FileListQuickSearch, { ...props, text: "text2" })),
       );
     });
 
@@ -150,7 +150,7 @@ describe("FileListQuickSearch.test.mjs", () => {
       withThemeContext(h(FileListQuickSearch, props)),
       {
         createNodeMock: (el) => (el.type === "text" ? textEl : null),
-      }
+      },
     );
 
     //when
@@ -185,7 +185,7 @@ describe("FileListQuickSearch.test.mjs", () => {
       withThemeContext(h(FileListQuickSearch, props)),
       {
         createNodeMock: (el) => (el.type === "text" ? textEl : null),
-      }
+      },
     ).root;
 
     //then
@@ -258,8 +258,8 @@ function assertFileListQuickSearch(result, props) {
           left: 1,
           style: textStyle,
           content: props.text.slice(0, Math.min(textWidth, props.text.length)),
-        })
-      )
-    )
+        }),
+      ),
+    ),
   );
 }

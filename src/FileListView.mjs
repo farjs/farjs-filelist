@@ -95,7 +95,7 @@ const FileListView = (props) => {
       const x = data.x - /** @type {number} */ (curr.aleft);
       const y = data.y - /** @type {number} */ (curr.atop);
       const colIndex = columnsPosRef.current.findIndex(
-        ({ colLeft, colWidth }) => colLeft <= x && x < colLeft + colWidth
+        ({ colLeft, colWidth }) => colLeft <= x && x < colLeft + colWidth,
       );
       if (colIndex !== -1) {
         const itemPos = y > 0 ? y - 1 : y; // exclude column header
@@ -169,7 +169,7 @@ const FileListView = (props) => {
       left: 1,
       top: 1,
     },
-    ...renderedColumns
+    ...renderedColumns,
   );
 };
 

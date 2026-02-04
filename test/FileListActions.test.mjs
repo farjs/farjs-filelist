@@ -99,7 +99,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(currDir);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readDir, mkDirs })
+      new MockFileListApi({ readDir, mkDirs }),
     );
     /** @type {FileListItemCreatedAction} */
     const expected = {
@@ -141,7 +141,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(currDir);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readDir, mkDirs })
+      new MockFileListApi({ readDir, mkDirs }),
     );
     /** @type {FileListItemCreatedAction} */
     const expected = {
@@ -183,7 +183,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(currDir);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readDir, delete: deleteMock })
+      new MockFileListApi({ readDir, delete: deleteMock }),
     );
     /** @type {FileListDirUpdatedAction} */
     const expected = {
@@ -337,7 +337,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(source);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readFile, writeFile })
+      new MockFileListApi({ readFile, writeFile }),
     );
     const onExists = mockFunction();
     const onProgress = mockFunction((resPos) => {
@@ -351,7 +351,7 @@ describe("FileListActions.test.mjs", () => {
       srcDir,
       file,
       writeFile(dstDir, dstName, onExists),
-      onProgress
+      onProgress,
     );
 
     //then
@@ -421,7 +421,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(source);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readFile, writeFile })
+      new MockFileListApi({ readFile, writeFile }),
     );
     const onExists = mockFunction((item) => {
       //then
@@ -439,7 +439,7 @@ describe("FileListActions.test.mjs", () => {
       srcDir,
       file,
       writeFile(dstDir, dstName, onExists),
-      onProgress
+      onProgress,
     );
 
     //then
@@ -507,7 +507,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(source);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readFile, writeFile })
+      new MockFileListApi({ readFile, writeFile }),
     );
     const onExists = mockFunction();
     const onProgress = mockFunction((resPos) => {
@@ -527,14 +527,14 @@ describe("FileListActions.test.mjs", () => {
       srcDir,
       file,
       writeFile(dstDir, dstName, onExists),
-      onProgress
+      onProgress,
     );
 
     //then
     console.log = savedLog;
     assert.deepEqual(
       capturedError,
-      `Failed to close srcFile: ${source.file}, error: ${error}`
+      `Failed to close srcFile: ${source.file}, error: ${error}`,
     );
     assert.deepEqual(result, true);
     assert.deepEqual(readNextBytes.times, 2);
@@ -601,7 +601,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(source);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readFile, writeFile })
+      new MockFileListApi({ readFile, writeFile }),
     );
     const onExists = mockFunction();
     const onProgress = mockFunction((resPos) => {
@@ -621,14 +621,14 @@ describe("FileListActions.test.mjs", () => {
       srcDir,
       file,
       writeFile(dstDir, dstName, onExists),
-      onProgress
+      onProgress,
     );
 
     //then
     console.log = savedLog;
     assert.deepEqual(
       capturedError,
-      `Failed to close dstFile: ${target.file}, error: ${error}`
+      `Failed to close dstFile: ${target.file}, error: ${error}`,
     );
     assert.deepEqual(result, true);
     assert.deepEqual(readNextBytes.times, 2);
@@ -674,7 +674,7 @@ describe("FileListActions.test.mjs", () => {
       srcDir,
       file,
       writeFile(dstDir, dstName, onExists),
-      onProgress
+      onProgress,
     );
 
     //then
@@ -728,7 +728,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(source);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readFile, writeFile })
+      new MockFileListApi({ readFile, writeFile }),
     );
     const onExists = mockFunction();
     const onProgress = mockFunction((resPos) => {
@@ -742,7 +742,7 @@ describe("FileListActions.test.mjs", () => {
       srcDir,
       file,
       writeFile(dstDir, dstName, onExists),
-      onProgress
+      onProgress,
     );
 
     //then
@@ -795,7 +795,7 @@ describe("FileListActions.test.mjs", () => {
       return Promise.resolve(source);
     });
     const actions = new FileListActions(
-      new MockFileListApi({ readFile, writeFile })
+      new MockFileListApi({ readFile, writeFile }),
     );
     const onExists = mockFunction();
     const onProgress = mockFunction();
@@ -807,7 +807,7 @@ describe("FileListActions.test.mjs", () => {
         srcDir,
         file,
         writeFile(dstDir, dstName, onExists),
-        onProgress
+        onProgress,
       );
     } catch (err) {
       resError = err;

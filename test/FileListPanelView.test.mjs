@@ -65,7 +65,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -96,7 +96,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -133,7 +133,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -177,8 +177,8 @@ describe("FileListPanelView.test.mjs", () => {
       withStackContext(
         withThemeContext(h(FileListPanelView, props)),
         size,
-        isActive
-      )
+        isActive,
+      ),
     ).root;
 
     //then
@@ -219,7 +219,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -259,7 +259,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -299,7 +299,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -332,7 +332,7 @@ describe("FileListPanelView.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListPanelView, props)), size)
+      withStackContext(withThemeContext(h(FileListPanelView, props)), size),
     ).root;
 
     //then
@@ -388,7 +388,7 @@ function assertFileListPanelView(
     dirSize = "0 (0)",
     diskSpace,
     isActive = false,
-  } = {}
+  } = {},
 ) {
   assert.deepEqual(FileListPanelView.displayName, "FileListPanelView");
 
@@ -506,7 +506,7 @@ function assertFileListPanelView(
               style: theme.regularItem,
             })
           : null,
-      ].filter((_) => _ !== null)
-    )
+      ].filter((_) => _ !== null),
+    ),
   );
 }

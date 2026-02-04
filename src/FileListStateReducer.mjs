@@ -37,7 +37,7 @@ function FileListStateReducer(state, action) {
 
           return Math.max(
             processed.items.findIndex((i) => i.name === focusedDir),
-            0
+            0,
           );
         }
         return 0;
@@ -58,7 +58,7 @@ function FileListStateReducer(state, action) {
         const currItem = FileListState.currentItem(state);
         if (currItem) {
           const index = processed.items.findIndex(
-            (i) => i.name === currItem.name
+            (i) => i.name === currItem.name,
           );
           return index < 0
             ? Math.min(currIndex, a.currDir.items.length)
@@ -141,10 +141,10 @@ function processDir(currDir, sort) {
    */
   function sortCurrItems() {
     const dirs = currDir.items.filter(
-      (i) => i.name !== FileListItem.up.name && i.isDir
+      (i) => i.name !== FileListItem.up.name && i.isDir,
     );
     const files = currDir.items.filter(
-      (i) => i.name !== FileListItem.up.name && !i.isDir
+      (i) => i.name !== FileListItem.up.name && !i.isDir,
     );
     const sortedDirs = sortItems(dirs, sort);
     const sortedFiles = sortItems(files, sort);

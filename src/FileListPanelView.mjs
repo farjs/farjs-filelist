@@ -95,7 +95,7 @@ const FileListPanelView = (props) => {
           text: (() => {
             const selectedSize = selectedItems.reduce(
               (res, item) => res + item.size,
-              0
+              0,
             );
             const selectedSizeFmt = formatSize(selectedSize);
             const count = selectedItems.length;
@@ -184,7 +184,7 @@ const FileListPanelView = (props) => {
           text: formatSize(props.state.diskSpace),
           style,
         })
-      : null
+      : null,
   );
 };
 

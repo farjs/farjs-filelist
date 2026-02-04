@@ -56,7 +56,7 @@ describe("FileList.test.mjs", () => {
     const state2 = { ...state1, offset: state1.offset + 1 };
     const props2 = { ...props1, state: state2 };
     const action = TaskAction(
-      Task("Changing dir", Promise.resolve(state1.currDir))
+      Task("Changing dir", Promise.resolve(state1.currDir)),
     );
 
     //when
@@ -101,14 +101,14 @@ describe("FileList.test.mjs", () => {
         width: 7,
         height: 3,
         columns: 2,
-      }
+      },
     );
     const renderer = TestRenderer.create(
-      withStackContext(h(FileList, props), {}, true)
+      withStackContext(h(FileList, props), {}, true),
     );
     assert.deepEqual(
       renderer.root.findByType(fileListViewComp).props.focusedIndex,
-      0
+      0,
     );
 
     /**
@@ -121,13 +121,13 @@ describe("FileList.test.mjs", () => {
       //when
       renderer.root.findByType(fileListViewComp).props.onWheel(up);
       renderer.update(
-        withStackContext(h(FileList, { ...props, state }), {}, true)
+        withStackContext(h(FileList, { ...props, state }), {}, true),
       );
 
       //then
       assert.deepEqual(
         renderer.root.findByType(fileListViewComp).props.focusedIndex,
-        index
+        index,
       );
       if (changed) {
         assert.deepEqual(dispatch.times, dispatchTimes + 1);
@@ -178,7 +178,7 @@ describe("FileList.test.mjs", () => {
         width: 7,
         height: 3,
         columns: 2,
-      }
+      },
     );
     const comp = TestRenderer.create(withStackContext(h(FileList, props))).root;
     const viewProps = comp.findByType(fileListViewComp).props;
@@ -216,14 +216,14 @@ describe("FileList.test.mjs", () => {
         width: 7,
         height: 3,
         columns: 2,
-      }
+      },
     );
     const renderer = TestRenderer.create(
-      withStackContext(h(FileList, props), {}, true)
+      withStackContext(h(FileList, props), {}, true),
     );
     assert.deepEqual(
       renderer.root.findByType(fileListViewComp).props.focusedIndex,
-      0
+      0,
     );
 
     /**
@@ -236,13 +236,13 @@ describe("FileList.test.mjs", () => {
       //when
       renderer.root.findByType(fileListViewComp).props.onClick(clickIndex);
       renderer.update(
-        withStackContext(h(FileList, { ...props, state }), {}, true)
+        withStackContext(h(FileList, { ...props, state }), {}, true),
       );
 
       //then
       assert.deepEqual(
         renderer.root.findByType(fileListViewComp).props.focusedIndex,
-        index
+        index,
       );
       if (changed) {
         assert.deepEqual(dispatch.times, dispatchTimes + 1);
@@ -298,15 +298,15 @@ describe("FileList.test.mjs", () => {
         height: 3,
         columns: 2,
         onKeypress,
-      }
+      },
     );
     const screen = /** @type {BlessedScreen} */ ({});
     const renderer = TestRenderer.create(
-      withStackContext(h(FileList, rootProps), {}, true)
+      withStackContext(h(FileList, rootProps), {}, true),
     );
     assert.deepEqual(
       renderer.root.findByType(fileListViewComp).props.focusedIndex,
-      0
+      0,
     );
 
     /**
@@ -342,7 +342,7 @@ describe("FileList.test.mjs", () => {
       //when
       renderer.root.findByType(fileListViewComp).props.onKeypress(screen, key);
       renderer.update(
-        withStackContext(h(FileList, { ...props, state }), {}, true)
+        withStackContext(h(FileList, { ...props, state }), {}, true),
       );
 
       //then
@@ -350,7 +350,7 @@ describe("FileList.test.mjs", () => {
       assert.deepEqual(onKeypressArgs, [screen, key]);
 
       const viewItems = items.map((name) =>
-        FileListItem(name, name === FileListItem.up.name)
+        FileListItem(name, name === FileListItem.up.name),
       );
       const res = renderer.root.findByType(fileListViewComp).props;
       assert.deepEqual(res.items, viewItems);
@@ -469,12 +469,12 @@ describe("FileList.test.mjs", () => {
       columns: 2,
     });
     const action = TaskAction(
-      Task("Changing dir", Promise.resolve(props.state.currDir))
+      Task("Changing dir", Promise.resolve(props.state.currDir)),
     );
 
     //when
     const result = TestRenderer.create(
-      withStackContext(h(FileList, props))
+      withStackContext(h(FileList, props)),
     ).root;
 
     //then
@@ -513,12 +513,12 @@ describe("FileList.test.mjs", () => {
         width: 7,
         height: 2,
         columns: 2,
-      }
+      },
     );
 
     //when
     const result = TestRenderer.create(
-      withStackContext(h(FileList, props), {}, true)
+      withStackContext(h(FileList, props), {}, true),
     ).root;
 
     //then
@@ -553,12 +553,12 @@ describe("FileList.test.mjs", () => {
         width: 7,
         height: 2,
         columns: 2,
-      }
+      },
     );
 
     //when
     const result = TestRenderer.create(
-      withStackContext(h(FileList, props), {}, true)
+      withStackContext(h(FileList, props), {}, true),
     ).root;
 
     //then
@@ -613,6 +613,6 @@ function assertFileList(result, props, { viewItems, focusedIndex }) {
       onWheel: mockFunction(),
       onClick: mockFunction(),
       onKeypress: mockFunction(),
-    })
+    }),
   );
 }

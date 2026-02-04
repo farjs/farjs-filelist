@@ -40,12 +40,12 @@ describe("FileListPanelController.test.mjs", () => {
     const stack = new PanelStack(
       true,
       [new PanelStackItem(fsPanelComp, dispatch, actions, state)],
-      mockFunction()
+      mockFunction(),
     );
 
     //when
     const result = TestRenderer.create(
-      withStackContext(h(controller, null), { stack })
+      withStackContext(h(controller, null), { stack }),
     ).root;
 
     //then
@@ -60,12 +60,12 @@ describe("FileListPanelController.test.mjs", () => {
     const stack = new PanelStack(
       true,
       [new PanelStackItem(fsPanelComp)],
-      mockFunction()
+      mockFunction(),
     );
 
     //when
     const result = TestRenderer.create(
-      withStackContext(h(controller, null), { stack })
+      withStackContext(h(controller, null), { stack }),
     ).root;
 
     //then
@@ -84,7 +84,7 @@ function assertFileListPanelController(
   result,
   data,
   controller,
-  fileListPanelComp
+  fileListPanelComp,
 ) {
   assert.deepEqual(controller.displayName, "FileListPanelController");
 

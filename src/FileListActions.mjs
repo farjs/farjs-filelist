@@ -141,7 +141,7 @@ class FileListActions {
         return loop().finally(() => {
           return source.close().catch((err) => {
             console.log(
-              `Failed to close srcFile: ${source.file}, error: ${err}`
+              `Failed to close srcFile: ${source.file}, error: ${err}`,
             );
           });
         });
@@ -161,7 +161,7 @@ class FileListActions {
         async (err) => {
           await target.delete();
           return Promise.reject(err);
-        }
+        },
       );
   }
 }

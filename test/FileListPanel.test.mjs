@@ -74,7 +74,7 @@ describe("FileListPanel.test.mjs", () => {
     const screen = /** @type {BlessedScreen} */ ({});
 
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     const viewProps = renderer.root.findByType(fileListPanelView).props;
 
@@ -124,7 +124,7 @@ describe("FileListPanel.test.mjs", () => {
     const screen = /** @type {BlessedScreen} */ ({});
 
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     const viewProps = renderer.root.findByType(fileListPanelView).props;
 
@@ -173,7 +173,7 @@ describe("FileListPanel.test.mjs", () => {
     const screen = /** @type {any} */ ({ copyToClipboard });
 
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     const viewProps = renderer.root.findByType(fileListPanelView).props;
 
@@ -206,7 +206,7 @@ describe("FileListPanel.test.mjs", () => {
     const screen = /** @type {any} */ ({ copyToClipboard });
 
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     const viewProps = renderer.root.findByType(fileListPanelView).props;
 
@@ -241,7 +241,7 @@ describe("FileListPanel.test.mjs", () => {
     const props = getFileListPanelProps(dispatch, actions, state);
 
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
     const updatedDir = /** @type {FileListDir} */ {
@@ -283,7 +283,7 @@ describe("FileListPanel.test.mjs", () => {
     const props = getFileListPanelProps(dispatch, actions, state);
 
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
     const changedDir = /** @type {FileListDir} */ {
@@ -292,7 +292,7 @@ describe("FileListPanel.test.mjs", () => {
       items: [],
     };
     const action = TaskAction(
-      Task("Changing dir", Promise.resolve(changedDir))
+      Task("Changing dir", Promise.resolve(changedDir)),
     );
 
     //when
@@ -327,7 +327,7 @@ describe("FileListPanel.test.mjs", () => {
     const props = getFileListPanelProps(dispatch, actions, state);
 
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
     const changedDir = /** @type {FileListDir} */ {
@@ -336,7 +336,7 @@ describe("FileListPanel.test.mjs", () => {
       items: [],
     };
     const action = TaskAction(
-      Task("Changing dir", Promise.resolve(changedDir))
+      Task("Changing dir", Promise.resolve(changedDir)),
     );
 
     //when
@@ -357,7 +357,7 @@ describe("FileListPanel.test.mjs", () => {
       /** @type {(ch: object, key: IKeyEventArg) => void} */
       (_, key) => {
         capturedKey = key;
-      }
+      },
     );
     process.stdin.on("keypress", keyListener);
 
@@ -375,7 +375,7 @@ describe("FileListPanel.test.mjs", () => {
 
     const isRight = false;
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props), { isRight })
+      withStackContext(h(FileListPanel, props), { isRight }),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
 
@@ -402,7 +402,7 @@ describe("FileListPanel.test.mjs", () => {
       /** @type {(ch: object, key: IKeyEventArg) => void} */
       (_, key) => {
         capturedKey = key;
-      }
+      },
     );
     process.stdin.on("keypress", keyListener);
 
@@ -420,7 +420,7 @@ describe("FileListPanel.test.mjs", () => {
 
     const isRight = true;
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props), { isRight })
+      withStackContext(h(FileListPanel, props), { isRight }),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
 
@@ -461,7 +461,7 @@ describe("FileListPanel.test.mjs", () => {
     const props = getFileListPanelProps(dispatch, actions, state);
 
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
     const changedDir = /** @type {FileListDir} */ {
@@ -470,7 +470,7 @@ describe("FileListPanel.test.mjs", () => {
       items: [],
     };
     const action = TaskAction(
-      Task("Changing dir", Promise.resolve(changedDir))
+      Task("Changing dir", Promise.resolve(changedDir)),
     );
 
     //when
@@ -499,7 +499,7 @@ describe("FileListPanel.test.mjs", () => {
     const props = getFileListPanelProps(dispatch, actions, state);
 
     const comp = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     ).root;
     const viewProps = comp.findByType(fileListPanelView).props;
 
@@ -517,7 +517,7 @@ describe("FileListPanel.test.mjs", () => {
     const state = FileListState();
     const props = getFileListPanelProps(dispatch, actions, state);
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     const viewProps = renderer.root.findByType(fileListPanelView).props;
 
@@ -529,7 +529,7 @@ describe("FileListPanel.test.mjs", () => {
     //then
     assert.deepEqual(
       renderer.root.findByType(fileListQuickSearch).props.text,
-      ""
+      "",
     );
   });
 
@@ -540,14 +540,14 @@ describe("FileListPanel.test.mjs", () => {
     const state = FileListState();
     const props = getFileListPanelProps(dispatch, actions, state);
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     TestRenderer.act(() => {
       renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
     });
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
-      1
+      1,
     );
 
     //when
@@ -560,7 +560,7 @@ describe("FileListPanel.test.mjs", () => {
     //then
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
-      0
+      0,
     );
   });
 
@@ -571,14 +571,14 @@ describe("FileListPanel.test.mjs", () => {
     const state = FileListState();
     const props = getFileListPanelProps(dispatch, actions, state);
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props), {}, true)
+      withStackContext(h(FileListPanel, props), {}, true),
     );
     TestRenderer.act(() => {
       renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
     });
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
-      1
+      1,
     );
 
     //when
@@ -589,7 +589,7 @@ describe("FileListPanel.test.mjs", () => {
     //then
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
-      0
+      0,
     );
   });
 
@@ -600,7 +600,7 @@ describe("FileListPanel.test.mjs", () => {
     const state = FileListState();
     const props = getFileListPanelProps(dispatch, actions, state);
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     TestRenderer.act(() => {
       renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
@@ -615,7 +615,7 @@ describe("FileListPanel.test.mjs", () => {
     //then
     assert.deepEqual(
       renderer.root.findAllByType(fileListQuickSearch).length,
-      0
+      0,
     );
   });
 
@@ -641,7 +641,7 @@ describe("FileListPanel.test.mjs", () => {
     };
     const props = getFileListPanelProps(dispatch, actions, state);
     const renderer = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     );
     TestRenderer.act(() => {
       renderer.root.findByType(fileListPanelView).props.onKeypress(null, "C-s");
@@ -667,7 +667,7 @@ describe("FileListPanel.test.mjs", () => {
       //then
       assert.deepEqual(
         renderer.root.findByType(fileListQuickSearch).props.text,
-        text
+        text,
       );
       if (dispatchAction) {
         assert.deepEqual(dispatch.times, dispatchTimes + 1);
@@ -700,7 +700,7 @@ describe("FileListPanel.test.mjs", () => {
 
     //when
     const result = TestRenderer.create(
-      withStackContext(h(FileListPanel, props))
+      withStackContext(h(FileListPanel, props)),
     ).root;
 
     //then
@@ -739,6 +739,6 @@ function assertFileListPanel(result, props) {
       actions: props.actions,
       state: props.state,
       onKeypress: mockFunction(),
-    })
+    }),
   );
 }

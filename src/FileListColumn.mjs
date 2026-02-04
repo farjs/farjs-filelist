@@ -62,13 +62,13 @@ const FileListColumn = (props) => {
       const style = focused && itemStyle.focus ? itemStyle.focus : itemStyle;
 
       const text = UiString(
-        name.replaceAll("\n", "").replaceAll("\r", "").replaceAll("\t", " ")
+        name.replaceAll("\n", "").replaceAll("\r", "").replaceAll("\t", " "),
       );
       const content = renderText(
         style.bold ?? false,
         style.fg,
         style.bg,
-        text.ensureWidth(props.width, " ")
+        text.ensureWidth(props.width, " "),
       );
       const ending = text.strWidth() > props.width ? overlapEnd : borderEnd;
       return `${content}${ending}`;
@@ -102,7 +102,7 @@ const FileListColumn = (props) => {
           wrap: false,
           content: itemsContent,
         })
-      : null
+      : null,
   );
 };
 

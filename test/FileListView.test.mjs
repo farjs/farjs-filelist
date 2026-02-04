@@ -74,7 +74,7 @@ describe("FileListView.test.mjs", () => {
         createNodeMock: (el) => {
           return el.type === "box" ? { aleft: 5, atop: 3 } : null;
         },
-      }
+      },
     );
 
     /** @type {(arg: {up: boolean, shift: boolean}) => void} */
@@ -148,7 +148,7 @@ describe("FileListView.test.mjs", () => {
         createNodeMock: (el) => {
           return el.type === "box" ? { aleft: 5, atop: 3 } : null;
         },
-      }
+      },
     );
 
     /** @type {(arg: {x: number, y: number, index: number}) => void} */
@@ -219,7 +219,7 @@ describe("FileListView.test.mjs", () => {
         createNodeMock: (el) => {
           return el.type === "box" ? { aleft: 5, atop: 3 } : null;
         },
-      }
+      },
     );
     const keyFull = "some-key";
 
@@ -247,7 +247,7 @@ describe("FileListView.test.mjs", () => {
           on: mockFunction(),
           off: offMock,
         }),
-      })
+      }),
     );
 
     //when
@@ -258,8 +258,8 @@ describe("FileListView.test.mjs", () => {
             on: mockFunction(),
             off: offMock,
           }),
-        })
-      )
+        }),
+      ),
     );
 
     //then
@@ -287,13 +287,13 @@ describe("FileListView.test.mjs", () => {
           on: mockFunction(),
           off: mockFunction(),
         }),
-      })
+      }),
     ).root;
 
     //then
     assertComponents(
       result.children,
-      h("box", { width: props.width, height: props.height })
+      h("box", { width: props.width, height: props.height }),
     );
   });
 
@@ -315,7 +315,7 @@ describe("FileListView.test.mjs", () => {
           on: mockFunction(),
           off: mockFunction(),
         }),
-      })
+      }),
     ).root;
 
     //then
@@ -352,15 +352,18 @@ describe("FileListView.test.mjs", () => {
       selectedNames: new Set(["item 2"]),
     });
     const renderer = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListView, props)), stack)
+      withStackContext(withThemeContext(h(FileListView, props)), stack),
     );
     const updatedProps = { ...props, width: 8 };
 
     //when
     TestRenderer.act(() =>
       renderer.update(
-        withStackContext(withThemeContext(h(FileListView, updatedProps)), stack)
-      )
+        withStackContext(
+          withThemeContext(h(FileListView, updatedProps)),
+          stack,
+        ),
+      ),
     );
 
     //then
@@ -397,15 +400,18 @@ describe("FileListView.test.mjs", () => {
       selectedNames: new Set(["item 2"]),
     });
     const renderer = TestRenderer.create(
-      withStackContext(withThemeContext(h(FileListView, props)), stack)
+      withStackContext(withThemeContext(h(FileListView, props)), stack),
     );
     const updatedProps = { ...props, columns: 1 };
 
     //when
     TestRenderer.act(() =>
       renderer.update(
-        withStackContext(withThemeContext(h(FileListView, updatedProps)), stack)
-      )
+        withStackContext(
+          withThemeContext(h(FileListView, updatedProps)),
+          stack,
+        ),
+      ),
     );
 
     //then
@@ -495,7 +501,7 @@ function assertFileListView(result, props, expectedData) {
             }),
           ];
         })
-        .filter((_) => _)
-    )
+        .filter((_) => _),
+    ),
   );
 }

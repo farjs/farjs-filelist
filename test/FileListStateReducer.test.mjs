@@ -25,11 +25,11 @@ describe("FileListStateReducer.test.mjs", () => {
     //when & then
     assert.deepEqual(
       FileListStateReducer(state, "test_action") === state,
-      true
+      true,
     );
     assert.deepEqual(
       FileListStateReducer(state, { action: "unknown" }) === state,
-      true
+      true,
     );
   });
 

@@ -50,7 +50,7 @@ const FileList = (props) => {
     const newOffset = Math.max(Math.min(itemsLength - viewSize, rawOffset), 0);
     const focused = Math.max(
       Math.min(itemsLength - newOffset - 1, currIndex - newOffset),
-      0
+      0,
     );
     return [newOffset, focused];
   })();
@@ -147,7 +147,7 @@ const FileList = (props) => {
   useLayoutEffect(() => {
     if (props.state.currDir.path.length === 0) {
       props.dispatch(
-        props.actions.changeDir(props.dispatch, "", FileListItem.currDir.name)
+        props.actions.changeDir(props.dispatch, "", FileListItem.currDir.name),
       );
     }
   }, []);
