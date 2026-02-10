@@ -2,6 +2,7 @@
  * @import { ChildProcess } from "child_process"
  * @import { PromiseWithResolvers } from "../utils.mjs"
  */
+import child_process from "child_process";
 import { newPromiseWithResolvers } from "../utils.mjs";
 import StreamReader from "./StreamReader.mjs";
 
@@ -27,6 +28,9 @@ export class SubProcessError extends Error {
  */
 
 const SubProcess = {
+  /** @type {child_process["spawn"]} */
+  spawn: child_process.spawn,
+
   /**
    * @param {ChildProcess} child
    * @returns {Promise<SubProcess>}
@@ -78,7 +82,7 @@ const SubProcess = {
                 ? content.toString()
                 : `sub-process exited with code=${code}
 command:
-${child.spawnargs.join(" ")}`
+${child.spawnargs.join(" ")}`,
             );
           }),
         });

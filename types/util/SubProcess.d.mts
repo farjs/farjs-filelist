@@ -9,13 +9,14 @@ export class SubProcessError extends Error {
 }
 export default SubProcess;
 export type SubProcess = {
-    readonly child: ChildProcess;
+    readonly child: child_process.ChildProcess;
     readonly stdout: StreamReader;
     readonly exitP: Promise<SubProcessError | undefined>;
 };
 declare namespace SubProcess {
-    function wrap(child: ChildProcess): Promise<SubProcess>;
+    let spawn: typeof child_process.spawn;
+    function wrap(child: child_process.ChildProcess): Promise<SubProcess>;
 }
-import type { ChildProcess } from "child_process";
+import child_process from "child_process";
 import StreamReader from "./StreamReader.mjs";
 //# sourceMappingURL=SubProcess.d.mts.map
