@@ -37,8 +37,8 @@ declare class FileListActions {
      * @param {FileListApi} api
      */
     constructor(api: FileListApi);
-    /** @readonly @type {FileListApi} */
-    readonly api: FileListApi;
+    /** @type {FileListApi} */
+    api: FileListApi;
     /**
      * @param {(a: FileListAction) => any} dispatch
      * @param {string} path

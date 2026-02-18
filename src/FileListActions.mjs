@@ -16,7 +16,7 @@ class FileListActions {
    * @param {FileListApi} api
    */
   constructor(api) {
-    /** @readonly @type {FileListApi} */
+    /** @type {FileListApi} */
     this.api = api;
   }
 
