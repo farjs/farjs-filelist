@@ -1,8 +1,4 @@
 export default FileListPlugin;
-export type WithStacksProps = import("./stack/WithStacks.mjs").WithStacksProps;
-export type FileListState = import("./FileListState.mjs").FileListState;
-export type Dispatch = import("./FileListData.mjs").Dispatch;
-export type ReactComponent = import("./FileListData.mjs").ReactComponent;
 export type FileListPluginUiProps = {
     readonly dispatch: Dispatch;
     onClose(): void;
@@ -14,12 +10,6 @@ export type FileListPluginUiProps = {
  * }} FileListPluginUiProps
  */
 declare class FileListPlugin {
-    /**
-     * @param {readonly string[]} triggerKeys
-     */
-    constructor(triggerKeys: readonly string[]);
-    /** @readonly @type {readonly string[]} */
-    readonly triggerKeys: readonly string[];
     /**
      * @param {string} key
      * @param {WithStacksProps} stacks
@@ -35,5 +25,9 @@ declare class FileListPlugin {
      */
     onFileTrigger(filePath: string, fileHeader: Uint8Array, onClose: () => void): Promise<PanelStackItem<FileListState> | undefined>;
 }
+import type { Dispatch } from "./FileListData.mjs";
+import type { WithStacksProps } from "./stack/WithStacks.mjs";
+import type { ReactComponent } from "./FileListData.mjs";
 import PanelStackItem from "./stack/PanelStackItem.mjs";
+import type { FileListState } from "./FileListState.mjs";
 //# sourceMappingURL=FileListPlugin.d.mts.map

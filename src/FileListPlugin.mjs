@@ -1,8 +1,8 @@
 /**
- * @typedef {import("./stack/WithStacks.mjs").WithStacksProps} WithStacksProps
- * @typedef {import("./FileListState.mjs").FileListState} FileListState
- * @typedef {import("./FileListData.mjs").Dispatch} Dispatch
- * @typedef {import("./FileListData.mjs").ReactComponent} ReactComponent
+ * @import { WithStacksProps } from "./stack/WithStacks.mjs"
+ * @import { FileListState } from "./FileListState.mjs"
+ * @import { Dispatch } from "./FileListData.mjs"
+ * @import { ReactComponent } from "./FileListData.mjs"
  */
 import PanelStackItem from "./stack/PanelStackItem.mjs";
 
@@ -14,14 +14,6 @@ import PanelStackItem from "./stack/PanelStackItem.mjs";
  */
 
 class FileListPlugin {
-  /**
-   * @param {readonly string[]} triggerKeys
-   */
-  constructor(triggerKeys) {
-    /** @readonly @type {readonly string[]} */
-    this.triggerKeys = triggerKeys;
-  }
-
   /**
    * @param {string} key
    * @param {WithStacksProps} stacks
