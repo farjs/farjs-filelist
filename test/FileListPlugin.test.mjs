@@ -1,6 +1,5 @@
 import { deepEqual } from "node:assert/strict";
 import mockFunction from "mock-fn";
-import { lazyFn } from "../src/utils.mjs";
 import PanelStack from "../src/stack/PanelStack.mjs";
 import WithStacksData from "../src/stack/WithStacksData.mjs";
 import WithStacksProps from "../src/stack/WithStacksProps.mjs";
@@ -20,13 +19,10 @@ const stacksProps = WithStacksProps(
   WithStacksData(new PanelStack(false, [], mockFunction())),
 );
 
-const plugin = new FileListPluginLoader(
-  ["f1", "f2"],
-  lazyFn(() => {
-    const module = "./TestFileListPlugin.mjs";
-    return import(module).then((_) => _.default);
-  }),
-);
+const plugin = FileListPluginLoader(["f1", "f2"], async () => {
+  const module = "./TestFileListPlugin.mjs";
+  return (await import(module)).default;
+});
 
 describe("FileListPlugin.test.mjs", () => {
   it("should return passed keys when triggerKeys", () => {

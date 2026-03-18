@@ -3,26 +3,27 @@ export type FileListPluginUiProps = {
     readonly dispatch: Dispatch;
     onClose(): void;
 };
+export type IFileListPlugin = {
+    onKeyTrigger(key: string, stacks: WithStacksProps, data?: any): Promise<ReactComponent | undefined>;
+    onFileTrigger(filePath: string, fileHeader: Uint8Array, onClose: () => void): Promise<PanelStackItem<FileListState> | undefined>;
+};
 /**
  * @typedef {{
  *  readonly dispatch: Dispatch;
  *  onClose(): void;
  * }} FileListPluginUiProps
  */
-declare class FileListPlugin {
-    /**
-     * @param {string} key
-     * @param {WithStacksProps} stacks
-     * @param {any} [data]
-     * @returns {Promise<ReactComponent | undefined>}
-     */
+/**
+ * @typedef {{
+ *  onKeyTrigger(key: string, stacks: WithStacksProps, data?: any): Promise<ReactComponent | undefined>;
+ *  onFileTrigger(filePath: string, fileHeader: Uint8Array, onClose: () => void): Promise<PanelStackItem<FileListState> | undefined>;
+ * }} IFileListPlugin
+ */
+/**
+ * @implements {IFileListPlugin}
+ */
+declare class FileListPlugin implements IFileListPlugin {
     onKeyTrigger(key: string, stacks: WithStacksProps, data?: any): Promise<ReactComponent | undefined>;
-    /**
-     * @param {string} filePath
-     * @param {Uint8Array} fileHeader
-     * @param {() => void} onClose
-     * @returns {Promise<PanelStackItem<FileListState> | undefined>}
-     */
     onFileTrigger(filePath: string, fileHeader: Uint8Array, onClose: () => void): Promise<PanelStackItem<FileListState> | undefined>;
 }
 import type { Dispatch } from "./FileListData.mjs";

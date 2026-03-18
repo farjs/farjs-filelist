@@ -1,33 +1,39 @@
-import FileListPlugin from "./FileListPlugin.mjs";
+/**
+ * @import { IFileListPlugin } from "./FileListPlugin.mjs"
+ */
+import { lazyFn } from "./utils.mjs";
 
-class FileListPluginLoader extends FileListPlugin {
-  /**
-   * @param {readonly string[]} triggerKeys
-   * @param {() => Promise<FileListPlugin>} load
-   */
-  constructor(triggerKeys, load) {
-    super();
+/**
+ * @typedef {IFileListPlugin & {
+ *  readonly triggerKeys: readonly string[];
+ * }} FileListPluginLoader
+ */
 
-    /** @readonly @type {readonly string[]} */
-    this.triggerKeys = triggerKeys;
+/**
+ * @param {readonly string[]} triggerKeys
+ * @param {() => Promise<IFileListPlugin>} load
+ * @returns {FileListPluginLoader}
+ */
+function FileListPluginLoader(triggerKeys, load) {
+  const lazyLoad = lazyFn(load);
 
-    /** @readonly @private @type {() => Promise<FileListPlugin>} */
-    this.load = load;
-  }
+  return {
+    triggerKeys,
 
-  /** @type {FileListPlugin['onKeyTrigger']} */
-  async onKeyTrigger(key, stacks, data) {
-    const p = await this.load();
+    /** @type {IFileListPlugin['onKeyTrigger']} */
+    onKeyTrigger: async (key, stacks, data) => {
+      const p = await lazyLoad();
 
-    return p.onKeyTrigger(key, stacks, data);
-  }
+      return p.onKeyTrigger(key, stacks, data);
+    },
 
-  /** @type {FileListPlugin['onFileTrigger']} */
-  async onFileTrigger(filePath, fileHeader, onClose) {
-    const p = await this.load();
+    /** @type {IFileListPlugin['onFileTrigger']} */
+    onFileTrigger: async (filePath, fileHeader, onClose) => {
+      const p = await lazyLoad();
 
-    return p.onFileTrigger(filePath, fileHeader, onClose);
-  }
+      return p.onFileTrigger(filePath, fileHeader, onClose);
+    },
+  };
 }
 
 export default FileListPluginLoader;

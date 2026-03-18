@@ -1,14 +1,17 @@
 export default FileListPluginLoader;
-declare class FileListPluginLoader extends FileListPlugin {
-    /**
-     * @param {readonly string[]} triggerKeys
-     * @param {() => Promise<FileListPlugin>} load
-     */
-    constructor(triggerKeys: readonly string[], load: () => Promise<FileListPlugin>);
-    /** @readonly @type {readonly string[]} */
+export type FileListPluginLoader = IFileListPlugin & {
     readonly triggerKeys: readonly string[];
-    /** @readonly @private @type {() => Promise<FileListPlugin>} */
-    private readonly load;
-}
-import FileListPlugin from "./FileListPlugin.mjs";
+};
+/**
+ * @typedef {IFileListPlugin & {
+ *  readonly triggerKeys: readonly string[];
+ * }} FileListPluginLoader
+ */
+/**
+ * @param {readonly string[]} triggerKeys
+ * @param {() => Promise<IFileListPlugin>} load
+ * @returns {FileListPluginLoader}
+ */
+declare function FileListPluginLoader(triggerKeys: readonly string[], load: () => Promise<IFileListPlugin>): FileListPluginLoader;
+import type { IFileListPlugin } from "./FileListPlugin.mjs";
 //# sourceMappingURL=FileListPluginLoader.d.mts.map
